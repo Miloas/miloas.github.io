@@ -274,11 +274,13 @@
       
         
           
-            <h1 id="Reflection"><a href="#Reflection" class="headerlink" title="Reflection"></a>Reflection</h1><blockquote>
+            <h1 id="Reflection"><a href="#Reflection" class="headerlink" title="Reflection"></a>Reflection</h1><p><br></p>
+<blockquote>
 <p>Go provides a machanism to update variable and inspect their values at run time,to call their methods and apply the operations intrinsic to their representation,all without knowing their types at compile time.This machanism is called reflection.</p>
 </blockquote>
 <p>简而言之，反射就是一种代码自我审视机制，它暴露了符号表之类的编译器信息以提供更加强大的表达能力。</p>
-<h1 id="Why-Reflection"><a href="#Why-Reflection" class="headerlink" title="Why Reflection ?"></a>Why Reflection ?</h1><blockquote>
+<h1 id="Why-Reflection"><a href="#Why-Reflection" class="headerlink" title="Why Reflection ?"></a>Why Reflection ?</h1><p><br></p>
+<blockquote>
 <p>Sometimes we need to write a function capable of dealing uniformly with values of types that don’t satisfy a common interface, don’t have a known representation,or don’t exist at the time we design the function–or even all three.</p>
 </blockquote>
 <p>一个简单的例子就是<code>go</code>语言的<code>fmt.Fprintf</code>函数，它打印包括用户自定义的任何<code>type</code>的变量。没有反射的语言（比如<code>c++</code>，是难以做到这点的）。试想我们要实现一个更加通用的<code>Sprintf</code>函数，它接受任意变量并返回一个合适格式的字符串。<code>c++</code>的话怎么实现？在<code>c++11</code>之前，我们可以想到<code>cout</code>的做法，重载<code>&lt;&lt;</code>，有多少个类型就要重载多少次。当然我们现在可以用<code>c++11</code>的新特性，来让代码简单一点。</p>
