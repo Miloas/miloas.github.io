@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="-Golang -React," />
+  <meta name="keywords" content="-data mining," />
 
 
 
@@ -57,19 +57,16 @@
 
 
 
-<meta name="description" content="讲一下React和Golang的通信，也就是喜闻见乐的异步通信. 好在现代web开发把很多逻辑从后端移到前端，后端只关心数据处理.
-大概想一下整个Web被分为Client端和Server端，Server端只需要搞一个静态文件服务器就可以，原生的Golang就能很轻松的通过一行代码解决.">
+<meta name="description">
 <meta property="og:type" content="article">
-<meta property="og:title" content="React: Golang as server">
-<meta property="og:url" content="http://miloas.tk/2016/04/11/React-Golang-as-server/index.html">
+<meta property="og:title" content="DM: apriori">
+<meta property="og:url" content="http://miloas.tk/2016/06/15/DM-apriori/index.html">
 <meta property="og:site_name" content="Miloas's Notes">
-<meta property="og:description" content="讲一下React和Golang的通信，也就是喜闻见乐的异步通信. 好在现代web开发把很多逻辑从后端移到前端，后端只关心数据处理.
-大概想一下整个Web被分为Client端和Server端，Server端只需要搞一个静态文件服务器就可以，原生的Golang就能很轻松的通过一行代码解决.">
-<meta property="og:updated_time" content="2016-04-14T07:40:21.000Z">
+<meta property="og:description">
+<meta property="og:updated_time" content="2016-06-15T02:18:41.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="React: Golang as server">
-<meta name="twitter:description" content="讲一下React和Golang的通信，也就是喜闻见乐的异步通信. 好在现代web开发把很多逻辑从后端移到前端，后端只关心数据处理.
-大概想一下整个Web被分为Client端和Server端，Server端只需要搞一个静态文件服务器就可以，原生的Golang就能很轻松的通过一行代码解决.">
+<meta name="twitter:title" content="DM: apriori">
+<meta name="twitter:description">
 
 
 
@@ -87,7 +84,7 @@
   };
 </script>
 
-  <title> React: Golang as server | Miloas's Notes </title>
+  <title> DM: apriori | Miloas's Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -219,7 +216,7 @@
             
             
               
-                React: Golang as server
+                DM: apriori
               
             
           </h1>
@@ -231,8 +228,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-11T20:48:34+08:00" content="2016-04-11">
-              2016-04-11
+            <time itemprop="dateCreated" datetime="2016-06-15T10:16:51+08:00" content="2016-06-15">
+              2016-06-15
             </time>
           </span>
 
@@ -242,8 +239,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/11/React-Golang-as-server/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/11/React-Golang-as-server/" itemprop="commentsCount"></span>
+                <a href="/2016/06/15/DM-apriori/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/06/15/DM-apriori/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -265,23 +262,7 @@
       
 
       
-        <p>讲一下<code>React</code>和<code>Golang</code>的通信，也就是喜闻见乐的异步通信. 好在现代<code>web</code>开发把很多逻辑从后端移到前端，后端只关心数据处理.</p>
-<p>大概想一下整个<code>Web</code>被分为<code>Client</code>端和<code>Server</code>端，<code>Server</code>端只需要搞一个静态文件服务器就可以，原生的<code>Golang</code>就能很轻松的通过一行代码解决.</p>
-<a id="more"></a>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">  <span class="string">"net/http"</span></span><br><span class="line">  <span class="string">"encoding/json"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">//User : user info</span></span><br><span class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> &#123;</span><br><span class="line">    Name <span class="keyword">string</span> <span class="string">`json:"name"`</span></span><br><span class="line">    PassWord <span class="keyword">string</span> <span class="string">`json:"pwd"`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">func</span> main()&#123;</span><br><span class="line">  http.Handle(<span class="string">"/"</span>,http.FileServer(http.Dir(<span class="string">"../client/dist"</span>)))</span><br><span class="line">  http.HandleFunc(<span class="string">"/user"</span>,<span class="keyword">func</span>(w http.ResponseWriter,r *http.Request)&#123;</span><br><span class="line">      guy := User&#123;Name:<span class="string">"xiaoming"</span>,PassWord:<span class="string">"123456"</span>&#125;</span><br><span class="line">      json.NewEncoder(w).Encode(guy)</span><br><span class="line">  &#125;)</span><br><span class="line">  http.ListenAndServe(<span class="string">":8080"</span>, <span class="literal">nil</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>第15行代码，为根目录下<code>/client/dist/</code>创建了一个静态文件服务，访问<code>/</code>会自动渲染<code>/client/dist/index.html</code>.</p>
-<p>第16到19行，是一个<code>RestFul</code>接口 (大雾，现在还不能算，只是简单的模拟一下)，等下我们会在前端请求这个接口，然后我们就返回一个：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>:<span class="string">"xiaoming"</span>,</span><br><span class="line">  <span class="attr">"pwd"</span>:<span class="string">"123456"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>的<code>json</code>给前端.</p>
-<p>接下来说前端，前端只有一个组件：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> fetch <span class="keyword">from</span> <span class="string">'isomorphic-fetch'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>()&#123;</span><br><span class="line">      <span class="keyword">super</span>();</span><br><span class="line">      <span class="keyword">this</span>.state = &#123;</span><br><span class="line">        user: &#123;</span><br><span class="line">          name: <span class="string">''</span>,</span><br><span class="line">          pwd: <span class="string">''</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    componentDidMount()&#123;</span><br><span class="line">      fetch(<span class="string">'/user'</span>)</span><br><span class="line">        .then(x =&gt; x.json())</span><br><span class="line">        .then(json =&gt; &#123;</span><br><span class="line">          <span class="keyword">this</span>.setState(&#123;</span><br><span class="line">            user: &#123;</span><br><span class="line">              name: json.name,</span><br><span class="line">              pwd: json.pwd</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    render() &#123;</span><br><span class="line">        <span class="keyword">return</span> &lt;div&gt;</span><br><span class="line">          &#123;this.state.user.name&#125; &lt;br /&gt;</span><br><span class="line">          &#123;this.state.user.pwd&#125;</span><br><span class="line">        &lt;/div&gt;;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在组件从虚拟节点变成<code>dom</code>节点后调用<code>fetch</code>从后端请求数据，然后把数据放到<code>this.state</code>中，最后再<code>render</code>中把<code>state</code>的数据放进去.</p>
-<p>如果没有出错的话，在<code>server</code>目录下运行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ go run main.go</span><br></pre></td></tr></table></figure>
-<p>然后打开<code>localhost:8080</code>应该能看到两行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xiaoming</span><br><span class="line">123456</span><br></pre></td></tr></table></figure>
-<p><a href="https://github.com/Miloas/DemoDir/tree/master/demo1" target="_blank" rel="external">Code</a></p>
-
+        
       
     </div>
 
@@ -295,7 +276,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Golang-React/" rel="tag">#-Golang -React</a>
+            <a href="/tags/data-mining/" rel="tag">#-data mining</a>
           
         </div>
       
@@ -304,17 +285,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/10/React-tutorial/" rel="next" title="Yet another awful React tutorial">
-                <i class="fa fa-chevron-left"></i> Yet another awful React tutorial
+              <a href="/2016/04/11/React-Golang-as-server/" rel="next" title="React: Golang as server">
+                <i class="fa fa-chevron-left"></i> React: Golang as server
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/15/DM-apriori/" rel="prev" title="DM: apriori">
-                DM: apriori <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -700,9 +677,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'miloas';
-      var disqus_identifier = '2016/04/11/React-Golang-as-server/';
-      var disqus_title = 'React: Golang as server';
-      var disqus_url = 'http://miloas.tk/2016/04/11/React-Golang-as-server/';
+      var disqus_identifier = '2016/06/15/DM-apriori/';
+      var disqus_title = 'DM: apriori';
+      var disqus_url = 'http://miloas.tk/2016/06/15/DM-apriori/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
