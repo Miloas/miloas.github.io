@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="-Promise -Javascript," />
 
 
 
@@ -57,13 +57,25 @@
 
 
 
+<meta name="description" content="Pre
+
+  不知道会写多少篇，估计两三篇，最后实现的Promise可以过Promise A plus tests. 或者也可以叫then/promise 的core.js走读. 因为其实最后的代码就是简化的then/promise . 
+  实际上，我在阅读then/promise源码的时候，搜到了几篇别人写的分析then/promise的博客，写的并不好.. 可能是因为Promise A/+">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Promise (0)">
+<meta property="og:title" content="Promise 从入门到实现 (0)">
 <meta property="og:url" content="http://miloas.tk/2016/10/06/Promise-0/index.html">
 <meta property="og:site_name" content="Miloas's Notes">
-<meta property="og:updated_time" content="2016-10-06T07:43:52.000Z">
+<meta property="og:description" content="Pre
+
+  不知道会写多少篇，估计两三篇，最后实现的Promise可以过Promise A plus tests. 或者也可以叫then/promise 的core.js走读. 因为其实最后的代码就是简化的then/promise . 
+  实际上，我在阅读then/promise源码的时候，搜到了几篇别人写的分析then/promise的博客，写的并不好.. 可能是因为Promise A/+">
+<meta property="og:updated_time" content="2016-10-06T08:13:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Promise (0)">
+<meta name="twitter:title" content="Promise 从入门到实现 (0)">
+<meta name="twitter:description" content="Pre
+
+  不知道会写多少篇，估计两三篇，最后实现的Promise可以过Promise A plus tests. 或者也可以叫then/promise 的core.js走读. 因为其实最后的代码就是简化的then/promise . 
+  实际上，我在阅读then/promise源码的时候，搜到了几篇别人写的分析then/promise的博客，写的并不好.. 可能是因为Promise A/+">
 
 
 
@@ -81,7 +93,7 @@
   };
 </script>
 
-  <title> Promise (0) | Miloas's Notes </title>
+  <title> Promise 从入门到实现 (0) | Miloas's Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -213,7 +225,7 @@
             
             
               
-                Promise (0)
+                Promise 从入门到实现 (0)
               
             
           </h1>
@@ -259,7 +271,17 @@
       
 
       
-        
+        <h1 id="Pre"><a href="#Pre" class="headerlink" title="Pre"></a>Pre</h1><p></p>
+
+<p>  不知道会写多少篇，估计两三篇，最后实现的<code>Promise</code>可以过<a href="https://github.com/promises-aplus/promises-tests" target="_blank" rel="external">Promise A plus tests</a>. 或者也可以叫<a href="https://github.com/then/promise" target="_blank" rel="external">then/promise</a> 的<code>core.js</code>走读. 因为其实最后的代码就是简化的<code>then/promise</code> . </p>
+<p>  实际上，我在阅读<code>then/promise</code>源码的时候，搜到了几篇别人写的分析<code>then/promise</code>的博客，写的并不好.. 可能是因为<code>Promise A/+ spec</code>写的也太具体了..  都是一步一步实现的流程却没有写样例和解释</p>
+<p>  仅以此记录我的学习成果.</p>
+<p>&lt;!— more — &gt;</p>
+<h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><p></p>
+
+<p>TLNR.</p>
+<p>  <code>Promise</code>老生常谈了， </p>
+
       
     </div>
 
@@ -270,6 +292,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Promise-Javascript/" rel="tag">#-Promise -Javascript</a>
+          
+        </div>
       
 
       
@@ -367,7 +395,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -400,7 +428,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Pre"><span class="nav-number">1.</span> <span class="nav-text">Pre</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise"><span class="nav-number">2.</span> <span class="nav-text">Promise</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -669,7 +697,7 @@
     <script type="text/javascript">
       var disqus_shortname = 'miloas';
       var disqus_identifier = '2016/10/06/Promise-0/';
-      var disqus_title = 'Promise (0)';
+      var disqus_title = 'Promise 从入门到实现 (0)';
       var disqus_url = 'http://miloas.tk/2016/10/06/Promise-0/';
 
       function run_disqus_script(disqus_script){

@@ -69,7 +69,7 @@ Go provides a machanism to update variable and inspect their values at run time,
 
 
 Go provides a machanism to update variable and inspect their values at run time,to call their methods and apply the operations intrinsic to their representation,all without knowing their">
-<meta property="og:updated_time" content="2016-04-10T17:15:00.000Z">
+<meta property="og:updated_time" content="2016-10-06T07:53:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Reflection of Go">
 <meta name="twitter:description" content="Reflection
@@ -314,7 +314,6 @@ Go provides a machanism to update variable and inspect their values at run time,
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> x <span class="keyword">int</span> = <span class="number">1729</span>;</div><div class="line">p := reflect.ValueOf(&amp;x);</div><div class="line">v := p.Elem();</div><div class="line">v.SetInt(<span class="number">9271</span>); <span class="comment">//it works</span></div></pre></td></tr></table></figure>
 <p>这里值得注意的是反射对象<code>p</code>依然是<code>unsettable</code>的,通过调用<code>v:=p.Elem()</code>方法拿到<code>reflect.Value</code>中保存的<code>x</code>就是<code>x</code>本身,此时的<code>v</code>是<code>settable</code>的.</p>
 <h1 id="End"><a href="#End" class="headerlink" title="End"></a>End</h1><p>总的来说<code>golang</code>作为静态语言已经做的很好了,提供了反射后可以实现很多黑科技,虽然依然不能和<code>js</code> ,<code>ruby</code>, <code>scala</code> 比甜,但是总比<code>c++</code>舒服多了, 不是吗? :)</p>
-<p>(不对或者迷惑的地方可以评论我,我会尽快回复)</p>
 
       
     </div>
@@ -429,7 +428,7 @@ Go provides a machanism to update variable and inspect their values at run time,
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
