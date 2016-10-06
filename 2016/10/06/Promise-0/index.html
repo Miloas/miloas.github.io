@@ -57,25 +57,25 @@
 
 
 
-<meta name="description" content="Pre
+<meta name="description" content="Pre.
 
 不知道会写多少篇，估计两三篇，最后实现的Promise可以过Promise A plus tests. 或者也可以叫then/promise 的core.js走读. 因为其实最后的代码就是简化的then/promise . 
-实际上，我在阅读then/promise源码的时候，搜到了几篇别人写的分析then/promise的博客，写的并不好.. 可能是因为Promise A/+ spec">
+实际上，我在阅读then/promise源码的时候，搜到了几篇别人写的分析then/promise的博客，写的并不好.. 可能是因为Promise A/+ spe">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Promise 从入门到实现 <零>">
 <meta property="og:url" content="http://miloas.tk/2016/10/06/Promise-0/index.html">
 <meta property="og:site_name" content="Miloas's Notes">
-<meta property="og:description" content="Pre
+<meta property="og:description" content="Pre.
 
 不知道会写多少篇，估计两三篇，最后实现的Promise可以过Promise A plus tests. 或者也可以叫then/promise 的core.js走读. 因为其实最后的代码就是简化的then/promise . 
-实际上，我在阅读then/promise源码的时候，搜到了几篇别人写的分析then/promise的博客，写的并不好.. 可能是因为Promise A/+ spec">
-<meta property="og:updated_time" content="2016-10-06T10:14:08.000Z">
+实际上，我在阅读then/promise源码的时候，搜到了几篇别人写的分析then/promise的博客，写的并不好.. 可能是因为Promise A/+ spe">
+<meta property="og:updated_time" content="2016-10-06T11:50:05.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Promise 从入门到实现 <零>">
-<meta name="twitter:description" content="Pre
+<meta name="twitter:description" content="Pre.
 
 不知道会写多少篇，估计两三篇，最后实现的Promise可以过Promise A plus tests. 或者也可以叫then/promise 的core.js走读. 因为其实最后的代码就是简化的then/promise . 
-实际上，我在阅读then/promise源码的时候，搜到了几篇别人写的分析then/promise的博客，写的并不好.. 可能是因为Promise A/+ spec">
+实际上，我在阅读then/promise源码的时候，搜到了几篇别人写的分析then/promise的博客，写的并不好.. 可能是因为Promise A/+ spe">
 
 
 
@@ -271,7 +271,7 @@
       
 
       
-        <h1 id="Pre"><a href="#Pre" class="headerlink" title="Pre"></a>Pre</h1><p></p>
+        <h1 id="Pre"><a href="#Pre" class="headerlink" title="Pre."></a>Pre.</h1><p></p>
 
 <p>不知道会写多少篇，估计两三篇，最后实现的<code>Promise</code>可以过<a href="https://github.com/promises-aplus/promises-tests" target="_blank" rel="external">Promise A plus tests</a>. 或者也可以叫<a href="https://github.com/then/promise" target="_blank" rel="external">then/promise</a> 的<code>core.js</code>走读. 因为其实最后的代码就是简化的<code>then/promise</code> . </p>
 <p>实际上，我在阅读<code>then/promise</code>源码的时候，搜到了几篇别人写的分析<code>then/promise</code>的博客，写的并不好.. 可能是因为<code>Promise A/+ spec</code>写的也太具体了..  都是一步一步实现的流程却没有写样例和解释</p>
@@ -291,8 +291,9 @@
 <li><code>rejected</code>: 操作失败</li>
 </ul>
 <p>状态为<code>rejected</code>存放的值是异常的原因，<code>fulfilled</code>时存放的值是操作完成存储的值，例如读取文件而获得的内容.</p>
-<p><code>Promise</code>的<code>then</code>函数接受两个函数<code>onfulfill</code>和<code>onreject</code>，分别对应<code>Promise</code> <code>fulfilled</code>和<code>rejected</code>后需要执行的函数.</p>
+<p><code>Promise</code>的<code>then</code>函数接受两个函数<code>onfulfilled</code>和<code>onrejected</code>，分别对应<code>Promise</code> <code>fulfilled</code>和<code>rejected</code>后需要执行的函数.</p>
 <p>以上就是<code>Promise A/+</code>标准里定义的<code>Promise</code>，之后就暂且实现这些内容.</p>
+<p>具体关于<code>Promise</code>的内容可以看官方文档.</p>
 
       
     </div>
@@ -323,6 +324,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/06/Promise-1/" rel="prev" title="Promise 从入门到实现 <零>">
+                Promise 从入门到实现 <零> <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -397,7 +402,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -440,7 +445,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Pre"><span class="nav-number">1.</span> <span class="nav-text">Pre</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise"><span class="nav-number">2.</span> <span class="nav-text">Promise</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Pre"><span class="nav-number">1.</span> <span class="nav-text">Pre.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise"><span class="nav-number">2.</span> <span class="nav-text">Promise</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
