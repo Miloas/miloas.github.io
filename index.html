@@ -270,9 +270,17 @@
 
       
         
-          
-            <a id="more"></a>
-          
+          <p>这篇是实现的第一篇，先从定义<code>Promise</code>对象开始：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Promise</span>(<span class="params">fn</span>) </span>&#123;</div><div class="line">  <span class="keyword">this</span>._state = <span class="number">0</span></div><div class="line">  <span class="keyword">this</span>._value = <span class="literal">null</span></div><div class="line">  <span class="keyword">this</span>._deferreds = <span class="literal">null</span></div><div class="line">  doResolve(fn, <span class="keyword">this</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这里比较简单，一个<code>Promise</code>对象包含一个维护的状态<code>state</code>，值<code>value</code> 和回调函数<code>deferreds</code>，这里<code>deferreds</code>是一个数组，因为可能存在多个<code>Promise.then</code>的调用，像这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">readFile(somePath)</div><div class="line">	.then(doSomeThingA)</div><div class="line">readFile(somePath)</div><div class="line">	.then(doSomeThingB)</div></pre></td></tr></table></figure>
+<p>这样如果<code>readFile</code>还在执行中(<code>pending</code>)，<code>doSomeThingA</code>和<code>doSomeThingB</code>就会挂在回调队列上，也就是此时<code>readFile._deferreds = [doSomeThingA, doSomeThingB]</code>. </p>
+<p>先写到这.. 明天继续，睡觉..</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/06/Promise-1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
