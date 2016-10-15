@@ -66,7 +66,7 @@ resolved(value): creates a promise that is resolved with value.
 rejected(reason): creates a promise that is already rejected with reason.
 deferred(): creates">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Promise 实现 <二>">
+<meta property="og:title" content="Promise 实现 <终>">
 <meta property="og:url" content="http://miloas.tk/2016/10/15/Promise-2/index.html">
 <meta property="og:site_name" content="Miloas' Notes">
 <meta property="og:description" content="Test
@@ -77,9 +77,9 @@ promises-aplus-tests 需要搞一个adapter：
 resolved(value): creates a promise that is resolved with value.
 rejected(reason): creates a promise that is already rejected with reason.
 deferred(): creates">
-<meta property="og:updated_time" content="2016-10-15T13:13:26.000Z">
+<meta property="og:updated_time" content="2016-10-15T16:57:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Promise 实现 <二>">
+<meta name="twitter:title" content="Promise 实现 <终>">
 <meta name="twitter:description" content="Test
 
 promises-aplus-tests 需要搞一个adapter：
@@ -105,7 +105,7 @@ deferred(): creates">
   };
 </script>
 
-  <title> Promise 实现 <二> | Miloas' Notes </title>
+  <title> Promise 实现 <终> | Miloas' Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -237,7 +237,7 @@ deferred(): creates">
             
             
               
-                Promise 实现 <二>
+                Promise 实现 <终>
               
             
           </h1>
@@ -299,6 +299,19 @@ deferred(): creates">
 </ul>
 </blockquote>
 <a id="more"></a>
+<p>根据之前的<code>promise</code>实现，就可以写一个大概长这样的<code>adapter</code>:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//adapter.js</span></div><div class="line">exports.deferred = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> resolve, reject</div><div class="line">    <span class="keyword">var</span> promise = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">_resolve, _reject</span>) </span>&#123;</div><div class="line">      resolve = _resolve</div><div class="line">      reject = _reject</div><div class="line">    &#125;)</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">      <span class="attr">Promise</span>: promise,</div><div class="line">      <span class="attr">resolve</span>: resolve,</div><div class="line">      <span class="attr">reject</span>: reject</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">exports.resolved = <span class="built_in">Promise</span>.resolve</div><div class="line">exports.rejected = <span class="built_in">Promise</span>.reject</div></pre></td></tr></table></figure>
+<p>这里没什么说的，看代码就好</p>
+<p>然后就是测试用例，可以<code>npm i promises-aplus-test --save</code>，最后在<code>package.json</code>中添加<code>&quot;scripts&quot;: {        &quot;test&quot;: &quot;promises-aplus-tests adapter.js&quot;    }</code></p>
+<p>最后<code>npm run test</code>就可以跑测试了.</p>
+<h1 id="es6-extensions"><a href="#es6-extensions" class="headerlink" title="es6-extensions"></a>es6-extensions</h1><p>光是普通的<code>promise</code>还不是很强力，<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all" target="_blank" rel="external"><code>promise.all</code></a> 和<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race" target="_blank" rel="external"><code>promise.race</code></a> 是不可或缺的. 那么这个系列的最后部分就是不负责任的简单的<code>promise extension</code>实现. </p>
+<p><code>Promise.resolve</code>和<code>Promise.reject</code>就不说了，他们返回对应相应状态的<code>Promise</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Promise.race</span></div><div class="line"><span class="built_in">Promise</span>.race = <span class="function"><span class="keyword">function</span>(<span class="params">values</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</div><div class="line">    values.forEach(<span class="function"><span class="params">value</span> =&gt;</span> <span class="built_in">Promise</span>.resolve(value).then(resolve, reject))</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>因为之前的代码已经保证<code>fulfilled</code>和<code>rejected</code>的<code>Promise</code>状态再无法改变. 所以我们直接循环让它们自己竞争就行了.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// Promise.all</span></div><div class="line"><span class="built_in">Promise</span>.all = <span class="function"><span class="keyword">function</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> args = <span class="built_in">Array</span>.prototype.slice.call(arr)</div><div class="line">  <span class="keyword">var</span> remaining = args.length</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span>(args.length === <span class="number">0</span>) <span class="keyword">return</span> resolve([])</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">res</span>(<span class="params">i, val</span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span>(val &amp;&amp; (<span class="keyword">typeof</span> val === <span class="string">'object'</span> || <span class="keyword">typeof</span> val === <span class="string">'function'</span>)) &#123;</div><div class="line">	  	<span class="keyword">if</span>(val._state === <span class="number">1</span>) res(i, val._value)</div><div class="line">        <span class="keyword">if</span>(val._state === <span class="number">2</span>) reject(val._value)</div><div class="line">        val.then(<span class="function"><span class="keyword">function</span>(<span class="params">val</span>)</span>&#123;</div><div class="line">          res(i, val)</div><div class="line">        &#125;, reject)</div><div class="line">        <span class="keyword">return</span></div><div class="line">      &#125;</div><div class="line">      args[i] = val</div><div class="line">      <span class="keyword">if</span>(--remaining === <span class="number">0</span>) &#123;</div><div class="line">        resolve(args)</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; args.length; ++i) &#123;</div><div class="line">      res(i, args[i])</div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>Promise.all</code>主要判断接受的数组里的值是否是<code>Promise</code>如果是<code>Promise</code>就递归执行它，直到得到一个普通值，把它放进数组里.</p>
+<p>至此这个系列就完成了，考虑和不同<code>Promise</code>交互的情况如何处理，你可以阅读<code>then/Promise</code>的代码，这里就不再细说了，不是很难.</p>
+
       
     </div>
 
@@ -445,7 +458,7 @@ deferred(): creates">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Test"><span class="nav-number">1.</span> <span class="nav-text">Test</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Test"><span class="nav-number">1.</span> <span class="nav-text">Test</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#es6-extensions"><span class="nav-number">2.</span> <span class="nav-text">es6-extensions</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -714,7 +727,7 @@ deferred(): creates">
     <script type="text/javascript">
       var disqus_shortname = 'miloas';
       var disqus_identifier = '2016/10/15/Promise-2/';
-      var disqus_title = 'Promise 实现 <二>';
+      var disqus_title = 'Promise 实现 <终>';
       var disqus_url = 'http://miloas.tk/2016/10/15/Promise-2/';
 
       function run_disqus_script(disqus_script){
