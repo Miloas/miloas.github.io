@@ -60,8 +60,7 @@
 <meta name="description" content="SpookyJS
 
 说起SpookyJS，就不得不说前端的自动化测试. 这东西能用代码来模拟一些对web的操作，比如点击,截图. 类似的东西还有selenium，不过这东西我在mac上用的挺好的.
-1234brew install selenium-server-standalonebrew install chromedriverselenium-server -p 4444
-然后就可以用web">
+1234brew install selenium-server-standalonebrew install chromedriverselenium-server -p 4444">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spooky installation tutorial">
 <meta property="og:url" content="http://miloas.tk/2016/10/15/Spooky-installation-tutorial/index.html">
@@ -69,16 +68,14 @@
 <meta property="og:description" content="SpookyJS
 
 说起SpookyJS，就不得不说前端的自动化测试. 这东西能用代码来模拟一些对web的操作，比如点击,截图. 类似的东西还有selenium，不过这东西我在mac上用的挺好的.
-1234brew install selenium-server-standalonebrew install chromedriverselenium-server -p 4444
-然后就可以用web">
-<meta property="og:updated_time" content="2016-10-15T08:26:48.000Z">
+1234brew install selenium-server-standalonebrew install chromedriverselenium-server -p 4444">
+<meta property="og:updated_time" content="2016-10-15T08:28:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spooky installation tutorial">
 <meta name="twitter:description" content="SpookyJS
 
 说起SpookyJS，就不得不说前端的自动化测试. 这东西能用代码来模拟一些对web的操作，比如点击,截图. 类似的东西还有selenium，不过这东西我在mac上用的挺好的.
-1234brew install selenium-server-standalonebrew install chromedriverselenium-server -p 4444
-然后就可以用web">
+1234brew install selenium-server-standalonebrew install chromedriverselenium-server -p 4444">
 
 
 
@@ -278,8 +275,8 @@
 
 <p>说起<code>SpookyJS</code>，就不得不说前端的自动化测试. 这东西能用代码来模拟一些对<code>web</code>的操作，比如点击,截图. 类似的东西还有<code>selenium</code>，不过这东西我在<code>mac</code>上用的挺好的.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">brew install selenium-server-standalone</div><div class="line">brew install chromedriver</div><div class="line"></div><div class="line">selenium-server -p 4444</div></pre></td></tr></table></figure>
-<p>然后就可以用<code>webdriverio</code>搞事情了，但是我在<code>headless</code>的<code>ubuntu</code>上配置一直出迷之问题，<code>xvfb firefox</code>一直报一些无法解决的错误. 于是只能寻求其他的一些解决方案，然后就找到了<code>PhantomJS</code>（实际上<code>selenium</code>也是基于<code>PhantomJS</code>的），再找就找到了也是基于<code>PhantomJS</code>的<code>casperjs</code>，它拥有更好使的接口. 但是<code>casperjs</code>虽然有着<code>js</code>的模样却不是<code>js</code>（具体可以看文档) ，所以其实我需要的是一个<code>casperjs</code>的<code>nodejs binding</code>，也就是<code>SpookyJS</code>，这样才能用<code>node</code>搞事情啊！</p>
 <a id="more"></a>
+<p>然后就可以用<code>webdriverio</code>搞事情了，但是我在<code>headless</code>的<code>ubuntu</code>上配置一直出迷之问题，<code>xvfb firefox</code>一直报一些无法解决的错误. 于是只能寻求其他的一些解决方案，然后就找到了<code>PhantomJS</code>（实际上<code>selenium</code>也是基于<code>PhantomJS</code>的），再找就找到了也是基于<code>PhantomJS</code>的<code>casperjs</code>，它拥有更好使的接口. 但是<code>casperjs</code>虽然有着<code>js</code>的模样却不是<code>js</code>（具体可以看文档) ，所以其实我需要的是一个<code>casperjs</code>的<code>nodejs binding</code>，也就是<code>SpookyJS</code>，这样才能用<code>node</code>搞事情啊！</p>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p></p>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// ubuntu</div><div class="line">npm i phantomjs-prebuilt -g</div><div class="line">npm i casperjs -g</div><div class="line">npm i spookyjs --save</div></pre></td></tr></table></figure>
