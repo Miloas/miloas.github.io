@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="-Promise," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -57,25 +57,28 @@
 
 
 
-<meta name="description" content="Pre.
+<meta name="description" content="SpookyJS
 
-不知道会写多少篇，估计两三篇，最后实现的Promise可以过Promise A plus tests. 或者也可以叫then/promise 的core.js走读. 因为其实最后的代码就是简化的then/promise . 
-实际上，我在阅读then/promise源码的时候，搜到了几篇别人写的分析then/promise的博客，写的并不好.. 可能是因为Promise A/+ spe">
+说起SpookyJS，就不得不说前端的自动化测试. 这东西能用代码来模拟一些对web的操作，比如点击,截图. 类似的东西还有selenium，不过这东西我在mac上用的挺好的.
+1234brew install selenium-server-standalonebrew install chromedriverselenium-server -p 4444
+然后就可以用web">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Promise 实现 <零>">
-<meta property="og:url" content="http://miloas.tk/2016/10/06/Promise-0/index.html">
+<meta property="og:title" content="Spooky installation tutorial">
+<meta property="og:url" content="http://miloas.tk/2016/10/15/Spooky-installation-tutorial/index.html">
 <meta property="og:site_name" content="Miloas' Notes">
-<meta property="og:description" content="Pre.
+<meta property="og:description" content="SpookyJS
 
-不知道会写多少篇，估计两三篇，最后实现的Promise可以过Promise A plus tests. 或者也可以叫then/promise 的core.js走读. 因为其实最后的代码就是简化的then/promise . 
-实际上，我在阅读then/promise源码的时候，搜到了几篇别人写的分析then/promise的博客，写的并不好.. 可能是因为Promise A/+ spe">
-<meta property="og:updated_time" content="2016-10-08T08:40:34.000Z">
+说起SpookyJS，就不得不说前端的自动化测试. 这东西能用代码来模拟一些对web的操作，比如点击,截图. 类似的东西还有selenium，不过这东西我在mac上用的挺好的.
+1234brew install selenium-server-standalonebrew install chromedriverselenium-server -p 4444
+然后就可以用web">
+<meta property="og:updated_time" content="2016-10-15T08:26:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Promise 实现 <零>">
-<meta name="twitter:description" content="Pre.
+<meta name="twitter:title" content="Spooky installation tutorial">
+<meta name="twitter:description" content="SpookyJS
 
-不知道会写多少篇，估计两三篇，最后实现的Promise可以过Promise A plus tests. 或者也可以叫then/promise 的core.js走读. 因为其实最后的代码就是简化的then/promise . 
-实际上，我在阅读then/promise源码的时候，搜到了几篇别人写的分析then/promise的博客，写的并不好.. 可能是因为Promise A/+ spe">
+说起SpookyJS，就不得不说前端的自动化测试. 这东西能用代码来模拟一些对web的操作，比如点击,截图. 类似的东西还有selenium，不过这东西我在mac上用的挺好的.
+1234brew install selenium-server-standalonebrew install chromedriverselenium-server -p 4444
+然后就可以用web">
 
 
 
@@ -93,7 +96,7 @@
   };
 </script>
 
-  <title> Promise 实现 <零> | Miloas' Notes </title>
+  <title> Spooky installation tutorial | Miloas' Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -225,7 +228,7 @@
             
             
               
-                Promise 实现 <零>
+                Spooky installation tutorial
               
             
           </h1>
@@ -237,8 +240,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-06T15:43:52+08:00" content="2016-10-06">
-              2016-10-06
+            <time itemprop="dateCreated" datetime="2016-10-15T15:36:29+08:00" content="2016-10-15">
+              2016-10-15
             </time>
           </span>
 
@@ -248,8 +251,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/06/Promise-0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/06/Promise-0/" itemprop="commentsCount"></span>
+                <a href="/2016/10/15/Spooky-installation-tutorial/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/15/Spooky-installation-tutorial/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -271,30 +274,22 @@
       
 
       
-        <h1 id="Pre"><a href="#Pre" class="headerlink" title="Pre."></a>Pre.</h1><p></p>
+        <h1 id="SpookyJS"><a href="#SpookyJS" class="headerlink" title="SpookyJS"></a>SpookyJS</h1><p></p>
 
-<p>不知道会写多少篇，估计两三篇，最后实现的<code>Promise</code>可以过<a href="https://github.com/promises-aplus/promises-tests" target="_blank" rel="external">Promise A plus tests</a>. 或者也可以叫<a href="https://github.com/then/promise" target="_blank" rel="external">then/promise</a> 的<code>core.js</code>走读. 因为其实最后的代码就是简化的<code>then/promise</code> . </p>
-<p>实际上，我在阅读<code>then/promise</code>源码的时候，搜到了几篇别人写的分析<code>then/promise</code>的博客，写的并不好.. 可能是因为<code>Promise A/+ spec</code>写的也太具体了..  都是一步一步实现的流程却没有写样例和解释</p>
-<p>仅以此记录我的学习成果.</p>
+<p>说起<code>SpookyJS</code>，就不得不说前端的自动化测试. 这东西能用代码来模拟一些对<code>web</code>的操作，比如点击,截图. 类似的东西还有<code>selenium</code>，不过这东西我在<code>mac</code>上用的挺好的.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">brew install selenium-server-standalone</div><div class="line">brew install chromedriver</div><div class="line"></div><div class="line">selenium-server -p 4444</div></pre></td></tr></table></figure>
+<p>然后就可以用<code>webdriverio</code>搞事情了，但是我在<code>headless</code>的<code>ubuntu</code>上配置一直出迷之问题，<code>xvfb firefox</code>一直报一些无法解决的错误. 于是只能寻求其他的一些解决方案，然后就找到了<code>PhantomJS</code>（实际上<code>selenium</code>也是基于<code>PhantomJS</code>的），再找就找到了也是基于<code>PhantomJS</code>的<code>casperjs</code>，它拥有更好使的接口. 但是<code>casperjs</code>虽然有着<code>js</code>的模样却不是<code>js</code>（具体可以看文档) ，所以其实我需要的是一个<code>casperjs</code>的<code>nodejs binding</code>，也就是<code>SpookyJS</code>，这样才能用<code>node</code>搞事情啊！</p>
 <a id="more"></a>
-<h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><p></p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p></p>
 
-<p>TLNR.</p>
-<p><code>Promise</code>老生常谈了， 回调地狱的救星，链式调用，尤其是当我自己实现的时候，颇有一股<code>monad</code>的味道.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//普通异步回调</span></div><div class="line"><span class="keyword">var</span> A = <span class="string">'some path'</span></div><div class="line">fs.readFile(A,<span class="string">'utf8'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,B</span>)</span>&#123;</div><div class="line">  fs.readFile(B,<span class="string">'utf8'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,C</span>)</span>&#123;</div><div class="line">    fs.readFile(C,<span class="string">'utf8'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,D</span>)</span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(D)</div><div class="line">    &#125;)</div><div class="line">  &#125;)</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">//Promise异步</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">readFile</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line">    fs.readFile(name,<span class="string">'utf8'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,data</span>)</span>&#123;</div><div class="line">      <span class="keyword">if</span>(err)&#123;</div><div class="line">        reject(err)</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        resolve(data)</div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">readFile(A)</div><div class="line">	.then(readFile)</div><div class="line">	.then(readFile)</div><div class="line">	.then(<span class="built_in">console</span>.log)</div></pre></td></tr></table></figure>
-<p>一个月前我在给我同学写一个<code>Java</code>的上传文件的后端异步代码时出现了点问题. 我实际上是不怎么会<code>Java</code>的，他们要求上传若干个数量不定的文件，总之就是给多少个就要异步传多少个，全部传完搞一些事情. 当时我就想到了<code>Promise.All</code>和<code>Gevent</code>，怎奈这些<code>Java</code>代码是跑在安卓上的，我从哪偷个<code>Promise</code>去，这显然就是在搞我，最后他们说最多也就上传6个文件，于是最后的代码惨不忍睹，我写了一个金字塔… 没错，一个超大的不想看第二遍的金字塔…</p>
-<p>回归正题，<code>Promise</code>其实就是把所有嵌套回调组织成链状调用而已，本质是自动机.  再说的具体一点，一个<code>Promise</code>实际上就是一个对象，保存了一个状态和一个值，以及状态转移用的函数.</p>
-<p><code>Promise</code>有三个状态：</p>
-<ul>
-<li><code>pending</code>: 初始状态</li>
-<li><code>fulfilled</code>: 操作完成</li>
-<li><code>rejected</code>: 操作失败</li>
-</ul>
-<p>状态为<code>rejected</code>存放的值是异常的原因，<code>fulfilled</code>时存放的值是操作完成存储的值，例如读取文件而获得的内容.</p>
-<p><code>Promise</code>的<code>then</code>函数接受两个函数<code>onfulfilled</code>和<code>onrejected</code>，分别对应<code>Promise</code> <code>fulfilled</code>和<code>rejected</code>后需要执行的函数.</p>
-<p>以上就是<code>Promise A/+</code>标准里定义的<code>Promise</code>，之后就暂且实现这些内容.</p>
-<p>具体关于<code>Promise</code>的内容可以看官方文档.</p>
-<p>最后的实现结果就是<a href="https://github.com/Miloas/promise" target="_blank" rel="external">这样</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// ubuntu</div><div class="line">npm i phantomjs-prebuilt -g</div><div class="line">npm i casperjs -g</div><div class="line">npm i spookyjs --save</div></pre></td></tr></table></figure>
+<p>安装<code>phantomjs</code>可以从<code>npm</code>，也可以直接从官方<code>wget</code>. </p>
+<p>如果<code>phantomjs</code>和<code>casperjs</code>不是安装在全局，在使用<code>spookyjs</code>的时候要在<code>options</code>中注明<code>casperjs</code>的执行文件位置.因为实际上<code>spookyjs</code>的工作原理就是<code>nodejs</code>进程和<code>casperjs</code>进程通过<code>json-rpc</code>通信.</p>
+<p>装完了，跑一下官方的<code>example</code>发现还是报错的话，原因是你使用的<code>npm version &gt; 3.0</code>，会导致谜之依赖组织问题，如果报错告诉你<code>tiny json-rpc</code>不存在的话，重装一下就行了.</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p></p>
+
+<p>使用方法主要就是<code>EventEmitter</code>，用<code>spookyjs</code>拿到网页的数据后<code>emit</code>出去，然后在<code>on</code>里业务逻辑代码. 知道这个以后就可以看懂<code>example</code>的代码了. 剩下的所有接口的文档，需要去查看<code>casperjs</code>的文档.</p>
+<p>我主要来拿动态加载的数据..  </p>
 
       
     </div>
@@ -307,28 +302,18 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Promise/" rel="tag">#-Promise</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/11/React-Golang-as-server/" rel="next" title="React: Golang as server">
-                <i class="fa fa-chevron-left"></i> React: Golang as server
+              <a href="/2016/10/06/Promise-1/" rel="next" title="Promise 实现 <一>">
+                <i class="fa fa-chevron-left"></i> Promise 实现 <一>
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/06/Promise-1/" rel="prev" title="Promise 实现 <一>">
-                Promise 实现 <一> <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -446,7 +431,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Pre"><span class="nav-number">1.</span> <span class="nav-text">Pre.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise"><span class="nav-number">2.</span> <span class="nav-text">Promise</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SpookyJS"><span class="nav-number">1.</span> <span class="nav-text">SpookyJS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -714,9 +699,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'miloas';
-      var disqus_identifier = '2016/10/06/Promise-0/';
-      var disqus_title = 'Promise 实现 <零>';
-      var disqus_url = 'http://miloas.tk/2016/10/06/Promise-0/';
+      var disqus_identifier = '2016/10/15/Spooky-installation-tutorial/';
+      var disqus_title = 'Spooky installation tutorial';
+      var disqus_url = 'http://miloas.tk/2016/10/15/Spooky-installation-tutorial/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
