@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="-Promise," />
 
 
 
@@ -57,25 +57,37 @@
 
 
 
-<meta name="description" content="SpookyJS
+<meta name="description" content="Test
 
-说起SpookyJS，就不得不说前端的自动化测试. 这东西能用代码来模拟一些对web的操作，比如点击,截图. 类似的东西还有selenium，不过这东西我在mac上用的挺好的.
-1234brew install selenium-server-standalonebrew install chromedriverselenium-server -p 4444">
+promises-aplus-tests 需要搞一个adapter：
+
+
+resolved(value): creates a promise that is resolved with value.
+rejected(reason): creates a promise that is already rejected with reason.
+deferred(): creates">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spooky installation tutorial">
-<meta property="og:url" content="http://miloas.tk/2016/10/15/Spooky-installation-tutorial/index.html">
+<meta property="og:title" content="Promise 实现 <二>">
+<meta property="og:url" content="http://miloas.tk/2016/10/15/Promise-2/index.html">
 <meta property="og:site_name" content="Miloas' Notes">
-<meta property="og:description" content="SpookyJS
+<meta property="og:description" content="Test
 
-说起SpookyJS，就不得不说前端的自动化测试. 这东西能用代码来模拟一些对web的操作，比如点击,截图. 类似的东西还有selenium，不过这东西我在mac上用的挺好的.
-1234brew install selenium-server-standalonebrew install chromedriverselenium-server -p 4444">
-<meta property="og:updated_time" content="2016-10-15T08:45:05.000Z">
+promises-aplus-tests 需要搞一个adapter：
+
+
+resolved(value): creates a promise that is resolved with value.
+rejected(reason): creates a promise that is already rejected with reason.
+deferred(): creates">
+<meta property="og:updated_time" content="2016-10-15T13:13:26.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spooky installation tutorial">
-<meta name="twitter:description" content="SpookyJS
+<meta name="twitter:title" content="Promise 实现 <二>">
+<meta name="twitter:description" content="Test
 
-说起SpookyJS，就不得不说前端的自动化测试. 这东西能用代码来模拟一些对web的操作，比如点击,截图. 类似的东西还有selenium，不过这东西我在mac上用的挺好的.
-1234brew install selenium-server-standalonebrew install chromedriverselenium-server -p 4444">
+promises-aplus-tests 需要搞一个adapter：
+
+
+resolved(value): creates a promise that is resolved with value.
+rejected(reason): creates a promise that is already rejected with reason.
+deferred(): creates">
 
 
 
@@ -93,7 +105,7 @@
   };
 </script>
 
-  <title> Spooky installation tutorial | Miloas' Notes </title>
+  <title> Promise 实现 <二> | Miloas' Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -225,7 +237,7 @@
             
             
               
-                Spooky installation tutorial
+                Promise 实现 <二>
               
             
           </h1>
@@ -237,7 +249,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-15T15:36:29+08:00" content="2016-10-15">
+            <time itemprop="dateCreated" datetime="2016-10-15T16:47:27+08:00" content="2016-10-15">
               2016-10-15
             </time>
           </span>
@@ -248,8 +260,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/15/Spooky-installation-tutorial/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/15/Spooky-installation-tutorial/" itemprop="commentsCount"></span>
+                <a href="/2016/10/15/Promise-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/15/Promise-2/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -271,23 +283,22 @@
       
 
       
-        <h1 id="SpookyJS"><a href="#SpookyJS" class="headerlink" title="SpookyJS"></a>SpookyJS</h1><p></p>
+        <h1 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h1><p></p>
 
-<p>说起<code>SpookyJS</code>，就不得不说前端的自动化测试. 这东西能用代码来模拟一些对<code>web</code>的操作，比如点击,截图. 类似的东西还有<code>selenium</code>，不过这东西我在<code>mac</code>上用的挺好的.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">brew install selenium-server-standalone</div><div class="line">brew install chromedriver</div><div class="line"></div><div class="line">selenium-server -p 4444</div></pre></td></tr></table></figure>
+<p><a href="https://github.com/promises-aplus/promises-tests" target="_blank" rel="external">promises-aplus-tests</a> 需要搞一个<code>adapter</code>：</p>
+<blockquote>
+<ul>
+<li><code>resolved(value)</code>: creates a promise that is resolved with <code>value</code>.</li>
+<li><code>rejected(reason)</code>: creates a promise that is already rejected with <code>reason</code>.</li>
+<li><code>deferred()</code>: creates an object consisting of <code>{ promise, resolve, reject }</code>:<ul>
+<li><code>promise</code> is a promise that is currently in the pending state.</li>
+<li><code>resolve(value)</code> resolves the promise with <code>value</code>.</li>
+<li><code>reject(reason)</code> moves the promise from the pending state to the rejected state, with rejection reason <code>reason</code>.</li>
+</ul>
+</li>
+</ul>
+</blockquote>
 <a id="more"></a>
-<p>然后就可以用<code>webdriverio</code>搞事情了，但是我在<code>headless</code>的<code>ubuntu</code>上配置一直出迷之问题，<code>xvfb firefox</code>一直报一些无法解决的错误. 于是只能寻求其他的一些解决方案，然后就找到了<code>PhantomJS</code>（实际上<code>selenium</code>也是基于<code>PhantomJS</code>的），再找就找到了也是基于<code>PhantomJS</code>的<code>casperjs</code>，它拥有更好使的接口. 但是<code>casperjs</code>虽然有着<code>js</code>的模样却不是<code>js</code>（具体可以看文档) ，所以其实我需要的是一个<code>casperjs</code>的<code>nodejs binding</code>，也就是<code>SpookyJS</code>，这样才能用<code>node</code>搞事情啊！</p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p></p>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// ubuntu</div><div class="line">npm i phantomjs-prebuilt -g</div><div class="line">npm i casperjs -g</div><div class="line">npm i spookyjs --save</div></pre></td></tr></table></figure>
-<p>安装<code>phantomjs</code>可以从<code>npm</code>，也可以直接按<a href="http://gist.github.com/julionc/7476620" target="_blank" rel="external">官方</a>走.  （笔者是走的官方，所以不知道<code>npm</code>会不会有坑) 按官方走的同学注意把其中的版本换成最新的版本，笔者写这篇博客的版本已经是<code>2.1.1</code></p>
-<p>如果<code>phantomjs</code>和<code>casperjs</code>不是安装在全局，在使用<code>spookyjs</code>的时候要在<code>options</code>中注明<code>casperjs</code>的执行文件位置.因为实际上<code>spookyjs</code>的工作原理就是<code>nodejs</code>进程和<code>casperjs</code>进程通过<code>json-rpc</code>通信.</p>
-<p>装完了，跑一下官方的<code>example</code>发现还是报错的话，原因是你使用的<code>npm version &gt; 3.0</code>，会导致谜之依赖组织问题，如果报错告诉你<code>tiny json-rpc</code>不存在的话，重装一下就行了.</p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p></p>
-
-<p>使用方法主要就是<code>EventEmitter</code>，用<code>spookyjs</code>拿到网页的数据后<code>emit</code>出去，然后在<code>on</code>里业务逻辑代码. 知道这个以后就可以看懂<code>example</code>的代码了. 剩下的所有接口的文档，需要去查看<code>casperjs</code>的文档.</p>
-<p>我主要来拿动态加载的数据..  </p>
-
       
     </div>
 
@@ -299,22 +310,24 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Promise/" rel="tag">#-Promise</a>
+          
+        </div>
+      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/06/Promise-1/" rel="next" title="Promise 实现 <一>">
-                <i class="fa fa-chevron-left"></i> Promise 实现 <一>
+              <a href="/2016/10/15/Spooky-installation-tutorial/" rel="next" title="Spooky installation tutorial">
+                <i class="fa fa-chevron-left"></i> Spooky installation tutorial
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/15/Promise-2/" rel="prev" title="Promise 实现 <二>">
-                Promise 实现 <二> <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -432,7 +445,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SpookyJS"><span class="nav-number">1.</span> <span class="nav-text">SpookyJS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Test"><span class="nav-number">1.</span> <span class="nav-text">Test</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -700,9 +713,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'miloas';
-      var disqus_identifier = '2016/10/15/Spooky-installation-tutorial/';
-      var disqus_title = 'Spooky installation tutorial';
-      var disqus_url = 'http://miloas.tk/2016/10/15/Spooky-installation-tutorial/';
+      var disqus_identifier = '2016/10/15/Promise-2/';
+      var disqus_title = 'Promise 实现 <二>';
+      var disqus_url = 'http://miloas.tk/2016/10/15/Promise-2/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
