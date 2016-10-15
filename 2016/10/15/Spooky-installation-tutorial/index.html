@@ -69,7 +69,7 @@
 
 说起SpookyJS，就不得不说前端的自动化测试. 这东西能用代码来模拟一些对web的操作，比如点击,截图. 类似的东西还有selenium，不过这东西我在mac上用的挺好的.
 1234brew install selenium-server-standalonebrew install chromedriverselenium-server -p 4444">
-<meta property="og:updated_time" content="2016-10-15T08:28:16.000Z">
+<meta property="og:updated_time" content="2016-10-15T08:39:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spooky installation tutorial">
 <meta name="twitter:description" content="SpookyJS
@@ -280,7 +280,7 @@
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p></p>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// ubuntu</div><div class="line">npm i phantomjs-prebuilt -g</div><div class="line">npm i casperjs -g</div><div class="line">npm i spookyjs --save</div></pre></td></tr></table></figure>
-<p>安装<code>phantomjs</code>可以从<code>npm</code>，也可以直接从官方<code>wget</code>. </p>
+<p>安装<code>phantomjs</code>可以从<code>npm</code>，也可以直接按<a href="gist.github.com/julionc/7476620">官方</a>走.  （笔者是走的官方，所以不知道<code>npm</code>会不会有坑)</p>
 <p>如果<code>phantomjs</code>和<code>casperjs</code>不是安装在全局，在使用<code>spookyjs</code>的时候要在<code>options</code>中注明<code>casperjs</code>的执行文件位置.因为实际上<code>spookyjs</code>的工作原理就是<code>nodejs</code>进程和<code>casperjs</code>进程通过<code>json-rpc</code>通信.</p>
 <p>装完了，跑一下官方的<code>example</code>发现还是报错的话，原因是你使用的<code>npm version &gt; 3.0</code>，会导致谜之依赖组织问题，如果报错告诉你<code>tiny json-rpc</code>不存在的话，重装一下就行了.</p>
 <h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p></p>
