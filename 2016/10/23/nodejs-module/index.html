@@ -57,13 +57,19 @@
 
 
 
+<meta name="description" content="nodejs的模块机制还是比较简单的，但是极具迷惑性.. 因为它提供了两种模块的导出方法exports和module.exports.
+就连官方的文档都说，不用管那么多，当你要导出一个object或者一个构造函数的时候的时候用module.exports，其他情况用exports就行.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="exports和module.exports">
 <meta property="og:url" content="http://miloas.tk/2016/10/23/nodejs-module/index.html">
 <meta property="og:site_name" content="Miloas' Notes">
-<meta property="og:updated_time" content="2016-10-23T09:56:06.000Z">
+<meta property="og:description" content="nodejs的模块机制还是比较简单的，但是极具迷惑性.. 因为它提供了两种模块的导出方法exports和module.exports.
+就连官方的文档都说，不用管那么多，当你要导出一个object或者一个构造函数的时候的时候用module.exports，其他情况用exports就行.">
+<meta property="og:updated_time" content="2016-10-23T11:18:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="exports和module.exports">
+<meta name="twitter:description" content="nodejs的模块机制还是比较简单的，但是极具迷惑性.. 因为它提供了两种模块的导出方法exports和module.exports.
+就连官方的文档都说，不用管那么多，当你要导出一个object或者一个构造函数的时候的时候用module.exports，其他情况用exports就行.">
 
 
 
@@ -259,7 +265,21 @@
       
 
       
-        
+        <p><code>nodejs</code>的模块机制还是比较简单的，但是极具迷惑性.. 因为它提供了两种模块的导出方法<code>exports</code>和<code>module.exports</code>.</p>
+<p>就连官方的文档都说，不用管那么多，当你要导出一个<code>object</code>或者一个构造函数的时候的时候用<code>module.exports</code>，其他情况用<code>exports</code>就行.</p>
+<a id="more"></a>
+<p>其实<code>nodejs</code>的<code>require</code>返回的是<code>module.exports</code>对象，它被初始化为一个空对象<code>{}</code>. <code>exports</code>的作用是改变<code>module.exports</code>的初始化对象. 举个栗子:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//lib.js</span></div><div class="line">exports.name = <span class="string">"miloas"</span></div><div class="line"><span class="built_in">module</span>.exports = <span class="string">"yelinyan"</span></div><div class="line"></div><div class="line"><span class="comment">//index.js</span></div><div class="line"><span class="keyword">var</span> name = <span class="built_in">require</span>(<span class="string">'./lib.js'</span>)</div><div class="line"><span class="built_in">console</span>.log(name) <span class="comment">// yelinyan</span></div></pre></td></tr></table></figure>
+<p>注意在<code>lib.js</code>中发生的事情：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//起始 module.exports = &#123;&#125; , exports 引用指向 exports 也等于 &#123;&#125;</span></div><div class="line"><span class="comment">//当执行 exports.name = "miloas" 后, exports 等于 module.exporsts 等于 &#123; name: "miloas" &#125; </span></div><div class="line"><span class="comment">//当执行 module.exports = "yelinyan" 后, exports 仍然等于 &#123; name: "miloas"&#125;, 但是module.exports 等于 "yelinyan"</span></div><div class="line"><span class="comment">//所以当 index.js 中 require 的时候, 返回 module.exports 对象， 即 "yelinyan"</span></div></pre></td></tr></table></figure>
+<p>所以当你这样写的时候:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//lib.js</span></div><div class="line">exports.name = <span class="string">"miloas"</span></div><div class="line"><span class="built_in">module</span>.exports.foo = <span class="string">"foo"</span></div><div class="line"></div><div class="line"><span class="comment">//index.js</span></div><div class="line"><span class="keyword">var</span> name = <span class="built_in">require</span>(<span class="string">'./lib.js'</span>)</div><div class="line"><span class="built_in">console</span>.log(name) <span class="comment">// &#123; name: "miloas", foo: "foo"&#125;</span></div></pre></td></tr></table></figure>
+<p>这结果很合理.</p>
+<p>结论：</p>
+<p>起始<code>module.exports</code>和<code>exports</code>指向同一个<code>{}</code>, <code>require</code>会返回<code>module.exports</code>指向的对象.</p>
+<p>(详细点：<code>module.exports.xxx = xxx</code>和<code>exports.xxx = xxx</code>会改变<code>{}</code>, <code>module.exports = xxx</code> 会让它指向另一个对象，但是<code>exports</code>依然指向原对象, <code>require</code>返回<code>module.exports</code>所指向的对象)</p>
+<p>完</p>
+
       
     </div>
 
