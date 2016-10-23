@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="-Promise," />
+  <meta name="keywords" content="-nodejs," />
 
 
 
@@ -57,25 +57,13 @@
 
 
 
-<meta name="description" content="Pre.
-
-不知道会写多少篇，估计两三篇，最后实现的Promise可以过Promise A plus tests. 或者也可以叫then/promise 的core.js走读. 因为其实最后的代码就是简化的then/promise . 
-实际上，我在阅读then/promise源码的时候，搜到了几篇别人写的分析then/promise的博客，写的并不好.. 可能是因为Promise A/+ spe">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Promise 实现 <零>">
-<meta property="og:url" content="http://miloas.tk/2016/10/06/Promise-0/index.html">
+<meta property="og:title" content="exports和module.exports">
+<meta property="og:url" content="http://miloas.tk/2016/10/23/nodejs-module/index.html">
 <meta property="og:site_name" content="Miloas' Notes">
-<meta property="og:description" content="Pre.
-
-不知道会写多少篇，估计两三篇，最后实现的Promise可以过Promise A plus tests. 或者也可以叫then/promise 的core.js走读. 因为其实最后的代码就是简化的then/promise . 
-实际上，我在阅读then/promise源码的时候，搜到了几篇别人写的分析then/promise的博客，写的并不好.. 可能是因为Promise A/+ spe">
-<meta property="og:updated_time" content="2016-10-08T08:40:34.000Z">
+<meta property="og:updated_time" content="2016-10-23T09:56:06.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Promise 实现 <零>">
-<meta name="twitter:description" content="Pre.
-
-不知道会写多少篇，估计两三篇，最后实现的Promise可以过Promise A plus tests. 或者也可以叫then/promise 的core.js走读. 因为其实最后的代码就是简化的then/promise . 
-实际上，我在阅读then/promise源码的时候，搜到了几篇别人写的分析then/promise的博客，写的并不好.. 可能是因为Promise A/+ spe">
+<meta name="twitter:title" content="exports和module.exports">
 
 
 
@@ -93,7 +81,7 @@
   };
 </script>
 
-  <title> Promise 实现 <零> | Miloas' Notes </title>
+  <title> exports和module.exports | Miloas' Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -225,7 +213,7 @@
             
             
               
-                Promise 实现 <零>
+                exports和module.exports
               
             
           </h1>
@@ -237,8 +225,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-06T15:43:52+08:00" content="2016-10-06">
-              2016-10-06
+            <time itemprop="dateCreated" datetime="2016-10-23T16:17:29+08:00" content="2016-10-23">
+              2016-10-23
             </time>
           </span>
 
@@ -248,8 +236,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/06/Promise-0/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/06/Promise-0/" itemprop="commentsCount"></span>
+                <a href="/2016/10/23/nodejs-module/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/23/nodejs-module/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -271,31 +259,7 @@
       
 
       
-        <h1 id="Pre"><a href="#Pre" class="headerlink" title="Pre."></a>Pre.</h1><p></p>
-
-<p>不知道会写多少篇，估计两三篇，最后实现的<code>Promise</code>可以过<a href="https://github.com/promises-aplus/promises-tests" target="_blank" rel="external">Promise A plus tests</a>. 或者也可以叫<a href="https://github.com/then/promise" target="_blank" rel="external">then/promise</a> 的<code>core.js</code>走读. 因为其实最后的代码就是简化的<code>then/promise</code> . </p>
-<p>实际上，我在阅读<code>then/promise</code>源码的时候，搜到了几篇别人写的分析<code>then/promise</code>的博客，写的并不好.. 可能是因为<code>Promise A/+ spec</code>写的也太具体了..  都是一步一步实现的流程却没有写样例和解释</p>
-<p>仅以此记录我的学习成果.</p>
-<a id="more"></a>
-<h1 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h1><p></p>
-
-<p>TLNR.</p>
-<p><code>Promise</code>老生常谈了， 回调地狱的救星，链式调用，尤其是当我自己实现的时候，颇有一股<code>monad</code>的味道.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//普通异步回调</span></div><div class="line"><span class="keyword">var</span> A = <span class="string">'some path'</span></div><div class="line">fs.readFile(A,<span class="string">'utf8'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,B</span>)</span>&#123;</div><div class="line">  fs.readFile(B,<span class="string">'utf8'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,C</span>)</span>&#123;</div><div class="line">    fs.readFile(C,<span class="string">'utf8'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,D</span>)</span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(D)</div><div class="line">    &#125;)</div><div class="line">  &#125;)</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">//Promise异步</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">readFile</span>(<span class="params">name</span>) </span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</div><div class="line">    fs.readFile(name,<span class="string">'utf8'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,data</span>)</span>&#123;</div><div class="line">      <span class="keyword">if</span>(err)&#123;</div><div class="line">        reject(err)</div><div class="line">      &#125; <span class="keyword">else</span> &#123;</div><div class="line">        resolve(data)</div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">  &#125;)</div><div class="line">&#125;</div><div class="line"></div><div class="line">readFile(A)</div><div class="line">	.then(readFile)</div><div class="line">	.then(readFile)</div><div class="line">	.then(<span class="built_in">console</span>.log)</div></pre></td></tr></table></figure>
-<p>一个月前我在给我同学写一个<code>Java</code>的上传文件的后端异步代码时出现了点问题. 我实际上是不怎么会<code>Java</code>的，他们要求上传若干个数量不定的文件，总之就是给多少个就要异步传多少个，全部传完搞一些事情. 当时我就想到了<code>Promise.All</code>和<code>Gevent</code>，怎奈这些<code>Java</code>代码是跑在安卓上的，我从哪偷个<code>Promise</code>去，这显然就是在搞我，最后他们说最多也就上传6个文件，于是最后的代码惨不忍睹，我写了一个金字塔… 没错，一个超大的不想看第二遍的金字塔…</p>
-<p>回归正题，<code>Promise</code>其实就是把所有嵌套回调组织成链状调用而已，本质是自动机.  再说的具体一点，一个<code>Promise</code>实际上就是一个对象，保存了一个状态和一个值，以及状态转移用的函数.</p>
-<p><code>Promise</code>有三个状态：</p>
-<ul>
-<li><code>pending</code>: 初始状态</li>
-<li><code>fulfilled</code>: 操作完成</li>
-<li><code>rejected</code>: 操作失败</li>
-</ul>
-<p>状态为<code>rejected</code>存放的值是异常的原因，<code>fulfilled</code>时存放的值是操作完成存储的值，例如读取文件而获得的内容.</p>
-<p><code>Promise</code>的<code>then</code>函数接受两个函数<code>onfulfilled</code>和<code>onrejected</code>，分别对应<code>Promise</code> <code>fulfilled</code>和<code>rejected</code>后需要执行的函数.</p>
-<p>以上就是<code>Promise A/+</code>标准里定义的<code>Promise</code>，之后就暂且实现这些内容.</p>
-<p>具体关于<code>Promise</code>的内容可以看官方文档.</p>
-<p>最后的实现结果就是<a href="https://github.com/Miloas/promise" target="_blank" rel="external">这样</a></p>
-
+        
       
     </div>
 
@@ -309,7 +273,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Promise/" rel="tag">#-Promise</a>
+            <a href="/tags/nodejs/" rel="tag">#-nodejs</a>
           
         </div>
       
@@ -318,17 +282,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/11/React-Golang-as-server/" rel="next" title="React: Golang as server">
-                <i class="fa fa-chevron-left"></i> React: Golang as server
+              <a href="/2016/10/15/Promise-2/" rel="next" title="Promise 实现 <终>">
+                <i class="fa fa-chevron-left"></i> Promise 实现 <终>
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/06/Promise-1/" rel="prev" title="Promise 实现 <一>">
-                Promise 实现 <一> <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -446,7 +406,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Pre"><span class="nav-number">1.</span> <span class="nav-text">Pre.</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise"><span class="nav-number">2.</span> <span class="nav-text">Promise</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -714,9 +674,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'miloas';
-      var disqus_identifier = '2016/10/06/Promise-0/';
-      var disqus_title = 'Promise 实现 <零>';
-      var disqus_url = 'http://miloas.tk/2016/10/06/Promise-0/';
+      var disqus_identifier = '2016/10/23/nodejs-module/';
+      var disqus_title = 'exports和module.exports';
+      var disqus_url = 'http://miloas.tk/2016/10/23/nodejs-module/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
