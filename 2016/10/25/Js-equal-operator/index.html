@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="-Golang -React," />
+  <meta name="keywords" content="-Javascript," />
 
 
 
@@ -57,19 +57,22 @@
 
 
 
-<meta name="description" content="讲一下React和Golang的通信，也就是喜闻见乐的异步通信. 好在现代web开发把很多逻辑从后端移到前端，后端只关心数据处理.
-大概想一下整个Web被分为Client端和Server端，Server端只需要搞一个静态文件服务器就可以，原生的Golang就能很轻松的通过一行代码解决.">
+<meta name="description" content="偶然看到司徒正美前辈的2014年的一篇博客javascript 隐性类型转换步骤，看到评论里有人对练习的最后一个有疑问. 其实这里确实是正美前辈没说清楚.. 
+1&amp;#123; toString:function()&amp;#123; return 1 &amp;#125; , valueOf:function()&amp;#123; return [] &amp;#125;&amp;#125; == 1 // true
+为什么这个是t">
 <meta property="og:type" content="article">
-<meta property="og:title" content="React: Golang as server">
-<meta property="og:url" content="http://miloas.tk/2016/04/11/React-Golang-as-server/index.html">
+<meta property="og:title" content="JS == 运算符">
+<meta property="og:url" content="http://miloas.tk/2016/10/25/Js-equal-operator/index.html">
 <meta property="og:site_name" content="Miloas' Notes">
-<meta property="og:description" content="讲一下React和Golang的通信，也就是喜闻见乐的异步通信. 好在现代web开发把很多逻辑从后端移到前端，后端只关心数据处理.
-大概想一下整个Web被分为Client端和Server端，Server端只需要搞一个静态文件服务器就可以，原生的Golang就能很轻松的通过一行代码解决.">
-<meta property="og:updated_time" content="2016-04-14T07:40:21.000Z">
+<meta property="og:description" content="偶然看到司徒正美前辈的2014年的一篇博客javascript 隐性类型转换步骤，看到评论里有人对练习的最后一个有疑问. 其实这里确实是正美前辈没说清楚.. 
+1&amp;#123; toString:function()&amp;#123; return 1 &amp;#125; , valueOf:function()&amp;#123; return [] &amp;#125;&amp;#125; == 1 // true
+为什么这个是t">
+<meta property="og:updated_time" content="2016-10-25T07:03:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="React: Golang as server">
-<meta name="twitter:description" content="讲一下React和Golang的通信，也就是喜闻见乐的异步通信. 好在现代web开发把很多逻辑从后端移到前端，后端只关心数据处理.
-大概想一下整个Web被分为Client端和Server端，Server端只需要搞一个静态文件服务器就可以，原生的Golang就能很轻松的通过一行代码解决.">
+<meta name="twitter:title" content="JS == 运算符">
+<meta name="twitter:description" content="偶然看到司徒正美前辈的2014年的一篇博客javascript 隐性类型转换步骤，看到评论里有人对练习的最后一个有疑问. 其实这里确实是正美前辈没说清楚.. 
+1&amp;#123; toString:function()&amp;#123; return 1 &amp;#125; , valueOf:function()&amp;#123; return [] &amp;#125;&amp;#125; == 1 // true
+为什么这个是t">
 
 
 
@@ -87,7 +90,7 @@
   };
 </script>
 
-  <title> React: Golang as server | Miloas' Notes </title>
+  <title> JS == 运算符 | Miloas' Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -219,7 +222,7 @@
             
             
               
-                React: Golang as server
+                JS == 运算符
               
             
           </h1>
@@ -231,8 +234,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-11T20:48:34+08:00" content="2016-04-11">
-              2016-04-11
+            <time itemprop="dateCreated" datetime="2016-10-25T14:11:42+08:00" content="2016-10-25">
+              2016-10-25
             </time>
           </span>
 
@@ -242,8 +245,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/11/React-Golang-as-server/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/11/React-Golang-as-server/" itemprop="commentsCount"></span>
+                <a href="/2016/10/25/Js-equal-operator/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/25/Js-equal-operator/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -265,22 +268,16 @@
       
 
       
-        <p>讲一下<code>React</code>和<code>Golang</code>的通信，也就是喜闻见乐的异步通信. 好在现代<code>web</code>开发把很多逻辑从后端移到前端，后端只关心数据处理.</p>
-<p>大概想一下整个<code>Web</code>被分为<code>Client</code>端和<code>Server</code>端，<code>Server</code>端只需要搞一个静态文件服务器就可以，原生的<code>Golang</code>就能很轻松的通过一行代码解决.</p>
+        <p>偶然看到司徒正美前辈的<code>2014</code>年的一篇博客<a href="http://www.cnblogs.com/rubylouvre/p/3990290.html" target="_blank" rel="external">javascript 隐性类型转换步骤</a>，看到评论里有人对练习的最后一个有疑问. 其实这里确实是正美前辈没说清楚.. </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123; <span class="attr">toString</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="number">1</span> &#125; , <span class="attr">valueOf</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> [] &#125;&#125; == <span class="number">1</span> <span class="comment">// true</span></div></pre></td></tr></table></figure>
+<p>为什么这个是<code>true</code>呢？</p>
 <a id="more"></a>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">package</span> main</div><div class="line"></div><div class="line"><span class="keyword">import</span> (</div><div class="line">  <span class="string">"net/http"</span></div><div class="line">  <span class="string">"encoding/json"</span></div><div class="line">)</div><div class="line"></div><div class="line"><span class="comment">//User : user info</span></div><div class="line"><span class="keyword">type</span> User <span class="keyword">struct</span> &#123;</div><div class="line">    Name <span class="keyword">string</span> <span class="string">`json:"name"`</span></div><div class="line">    PassWord <span class="keyword">string</span> <span class="string">`json:"pwd"`</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">  http.Handle(<span class="string">"/"</span>,http.FileServer(http.Dir(<span class="string">"../client/dist"</span>)))</div><div class="line">  http.HandleFunc(<span class="string">"/user"</span>,<span class="function"><span class="keyword">func</span><span class="params">(w http.ResponseWriter,r *http.Request)</span></span>&#123;</div><div class="line">      guy := User&#123;Name:<span class="string">"xiaoming"</span>,PassWord:<span class="string">"123456"</span>&#125;</div><div class="line">      json.NewEncoder(w).Encode(guy)</div><div class="line">  &#125;)</div><div class="line">  http.ListenAndServe(<span class="string">":8080"</span>, <span class="literal">nil</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>第15行代码，为根目录下<code>/client/dist/</code>创建了一个静态文件服务，访问<code>/</code>会自动渲染<code>/client/dist/index.html</code>.</p>
-<p>第16到19行，是一个<code>RestFul</code>接口 (大雾，现在还不能算，只是简单的模拟一下)，等下我们会在前端请求这个接口，然后我们就返回一个：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span>:<span class="string">"xiaoming"</span>,</div><div class="line">  <span class="attr">"pwd"</span>:<span class="string">"123456"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>的<code>json</code>给前端.</p>
-<p>接下来说前端，前端只有一个组件：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</div><div class="line"><span class="keyword">import</span> fetch <span class="keyword">from</span> <span class="string">'isomorphic-fetch'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</div><div class="line">    <span class="keyword">constructor</span>()&#123;</div><div class="line">      <span class="keyword">super</span>();</div><div class="line">      <span class="keyword">this</span>.state = &#123;</div><div class="line">        <span class="attr">user</span>: &#123;</div><div class="line">          <span class="attr">name</span>: <span class="string">''</span>,</div><div class="line">          <span class="attr">pwd</span>: <span class="string">''</span></div><div class="line">        &#125;</div><div class="line">      &#125;;</div><div class="line">    &#125;</div><div class="line">    componentDidMount()&#123;</div><div class="line">      fetch(<span class="string">'/user'</span>)</div><div class="line">        .then(<span class="function"><span class="params">x</span> =&gt;</span> x.json())</div><div class="line">        .then(<span class="function"><span class="params">json</span> =&gt;</span> &#123;</div><div class="line">          <span class="keyword">this</span>.setState(&#123;</div><div class="line">            <span class="attr">user</span>: &#123;</div><div class="line">              <span class="attr">name</span>: json.name,</div><div class="line">              <span class="attr">pwd</span>: json.pwd</div><div class="line">            &#125;</div><div class="line">          &#125;);</div><div class="line">        &#125;);</div><div class="line">    &#125;</div><div class="line">    render() &#123;</div><div class="line">        <span class="keyword">return</span> &lt;div&gt;</div><div class="line">          &#123;this.state.user.name&#125; &lt;br /&gt;</div><div class="line">          &#123;this.state.user.pwd&#125;</div><div class="line">        &lt;/div&gt;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在组件从虚拟节点变成<code>dom</code>节点后调用<code>fetch</code>从后端请求数据，然后把数据放到<code>this.state</code>中，最后再<code>render</code>中把<code>state</code>的数据放进去.</p>
-<p>如果没有出错的话，在<code>server</code>目录下运行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ go run main.go</div></pre></td></tr></table></figure>
-<p>然后打开<code>localhost:8080</code>应该能看到两行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xiaoming</div><div class="line">123456</div></pre></td></tr></table></figure>
-<p><a href="https://github.com/Miloas/DemoDir/tree/master/demo1" target="_blank" rel="external">Code</a></p>
+<p><code>javascript</code>的类型有两类<code>Primitive</code>和<code>Object</code>，<code>Primitive</code>有<code>Undefined</code>,<code>Boolean</code>,<code>Number</code>和<code>String</code>.</p>
+<p>先说<code>undefined</code>,<code>null</code>和<code>NaN</code>，<code>NaN</code>不等于任何值（包括它自身），<code>null</code>和<code>undefined</code>相等，但不等于除了自身外的任何值.</p>
+<p>（ps: <code>null</code>的含义是空对象, <code>undefined</code>的含义是无定义的值)</p>
+<p>除了和对象的比较，其他的比较都是大家都转数字来进行比较.</p>
+<p>对象和非对象的比较的规则稍微复杂一点，不过也只是一点点.  过程就是先<code>valueOf</code>一下，看有没有得到<code>primitive</code>的值或者<code>null</code>，如果得到了就直接比较，否则就去试<code>toString</code>，看看返回的值是不是<code>primitive</code>和<code>null</code>，是的话就比较，不是的话抛异常.</p>
+<p>回到一开始的问题<code>{ toString:function(){ return 1 } , valueOf:function(){ return [] }}</code>调用<code>valueOf()</code>返回的是<code>[]</code>不是我们需要的可比较类型，所以再用原<code>object</code>调用<code>toString()</code>返回<code>1</code>，直接比较.</p>
 
       
     </div>
@@ -295,7 +292,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Golang-React/" rel="tag">#-Golang -React</a>
+            <a href="/tags/Javascript/" rel="tag">#-Javascript</a>
           
         </div>
       
@@ -304,17 +301,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/10/React-tutorial/" rel="next" title="Yet another awful React tutorial">
-                <i class="fa fa-chevron-left"></i> Yet another awful React tutorial
+              <a href="/2016/10/23/nodejs-module/" rel="next" title="exports和module.exports">
+                <i class="fa fa-chevron-left"></i> exports和module.exports
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/06/Promise-0/" rel="prev" title="Promise 实现 <零>">
-                Promise 实现 <零> <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -700,9 +693,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'miloas';
-      var disqus_identifier = '2016/04/11/React-Golang-as-server/';
-      var disqus_title = 'React: Golang as server';
-      var disqus_url = 'http://miloas.tk/2016/04/11/React-Golang-as-server/';
+      var disqus_identifier = '2016/10/25/Js-equal-operator/';
+      var disqus_title = 'JS == 运算符';
+      var disqus_url = 'http://miloas.tk/2016/10/25/Js-equal-operator/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
