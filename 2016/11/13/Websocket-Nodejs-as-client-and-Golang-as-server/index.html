@@ -69,7 +69,7 @@
 
 囧rz，因为最近在搞一个json-rpc 2.0 over websocket的一个东西. 其实有很多这样的库，直接拿来用就可以，但是实际上确实因为质量参差不齐，node这边似乎大家也用的比较少，于是造了一个websocket client的一个轮子JSONRpc. 
 实际上只是想写一篇博客记录一下我遇到的一个在node端close掉websocket connection后，gola">
-<meta property="og:updated_time" content="2016-11-15T10:46:17.000Z">
+<meta property="og:updated_time" content="2016-11-20T17:49:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Websocket: Nodejs as client and Golang as server">
 <meta name="twitter:description" content="Pre.
@@ -278,7 +278,7 @@
 <a id="more"></a> 
 <h1 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h1><p></p>
 
-<p>TLTR</p>
+<p>TL;DR</p>
 <p><code>websocket</code>就是一个<code>server</code>和<code>client</code>连接的双向持久的连接，不像<code>http</code>这种无状态的协议，它在频繁通信时很有效. 比如需要知道服务器是否有新的消息推送，在远古时期大家都用长轮询，现在就可以直接用高级协议<code>websocket</code>了. <code>js</code>的话市面上的大多浏览器已经都支持原生<code>websocket</code>了，<code>node</code>也有很多实现比如<code>ws</code>,<code>websokcet-node</code>,<code>socket.io</code>. 这三个我都大概用了一下.</p>
 <p><code>socket.io</code>适合你在两端都使用它，它最屌的地方在于兼容性，也就是在不支持<code>websocket</code>的地方会降级使用其他的方案顶替，然后就是它的使用，<code>server</code>和<code>client</code>是<code>pub/sub</code>的关系，写法和<code>eventEmitter</code>一样，所以用起来适合很多场景.</p>
 <p> <code>ws</code>和<code>weboskcet-ndoe</code>都是为<code>RFC</code>实现的，他们也都包含<code>server</code>和<code>client</code>的实现，<code>websocket-node</code>甚至在<code>client</code>端实现了一个符合<code>W3C</code>的接口，<code>ws</code>据它的介绍说是<code>node</code>最快的<code>websocket</code>实现.</p>
