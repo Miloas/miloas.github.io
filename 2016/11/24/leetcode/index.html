@@ -66,7 +66,7 @@
 <meta property="og:description" content="这篇博客用来记录我的leetcode的题解，昨天上来看都400多题了..  我以前做的时候还只有一两百题.. 
 以前做的时候是用c++，那这次会用四种语言来做c++, go, js, py, 很遗憾leetcode不支持haskell，之后我会补一些我用haskell在hackerrank的题解.">
 <meta property="og:image" content="https://ooo.0o0.ooo/2016/11/24/5836b46017489.jpg">
-<meta property="og:updated_time" content="2016-11-24T09:47:52.000Z">
+<meta property="og:updated_time" content="2016-11-26T10:41:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode">
 <meta name="twitter:description" content="这篇博客用来记录我的leetcode的题解，昨天上来看都400多题了..  我以前做的时候还只有一两百题.. 
@@ -286,7 +286,10 @@
 <p>那么我就很快想到了第二个算法, 我们假设这个中位数在第一个数组中，那只需要在第一个数组二分，然后在第二个数组查小于这个值得个数就可以判断是否是中位数，或者应该在二分中增大还是减小. 如果两个数组的数的个数和是奇数，在第一个数组中没有找到，只需要在第二个数组中再找一次. 如果是偶数，得到这个值后只需要找到离它最近的数就可以.分析一下复杂度, 最差情况是<code>O(2logmlogn)</code></p>
 <p><img src="https://ooo.0o0.ooo/2016/11/24/5836b46017489.jpg" alt="leetcode-4.jpg"></p>
 <p>从图中可以看到（黄色是我们算法的复杂度，蓝色是题目要求复杂度)，大多数情况我们的算法还是不够快.</p>
-<p>看了下论坛，看大家都是用的<code>findkth</code>， <code>findkth</code>算法基于这样一个事实，每次比较两个数组的<code>k/2</code>位置的数，如果第一个数组的小，那答案肯定不在第一个数组的前<code>k/2</code>个钟，否则不在第二个数组的前<code>k/2</code>个.这样复杂度就是<code>O(logmax(n,m))</code>，大功告成.</p>
+<p>看了下论坛，看大家都是用的<code>findkth</code>， <code>findkth</code>算法基于这样一个事实，每次比较两个数组的<code>k/2</code>位置的数，如果第一个数组的小，那答案肯定不在第一个数组的前<code>k/2</code>个中，否则不在第二个数组的前<code>k/2</code>个.这样复杂度就是<code>O(logmax(n,m))</code>，大功告成.</p>
+</li>
+<li><p>Longest Palindromic Substring</p>
+<p>最长回文子串高效的做法有两种，一种是通用的算法—后缀数组，另一种就是如果你搜别人的题解就能搜到的<code>manacher</code>算法.我的<code>c++</code>代码是用后缀数组做的，其他代码会用<code>manacher</code>来做.<code>manacher</code>很短也很快，它的时间复杂度是<code>O(n)</code>的，扫一次就能得到答案. 后缀数组的学习依然推荐09年国家集训队罗穗骞的论文《后缀数组——处理字符串的有力工具》，2倍增后缀数组来做的复杂度是<code>O(2nlog2n + 2n + 2nlog2n + 2nlog2n) = O(nlogn)</code> ，分别是构建<code>sa</code>的复杂度，构建<code>lcp</code>的复杂度，构建<code>rmq</code>的复杂度，查询的复杂度.</p>
 </li>
 </ol>
 
