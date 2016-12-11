@@ -7,7 +7,7 @@
 
 <html class="theme-next muse use-motion">
 <head>
-  <meta charset="UTF-8"/>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -57,22 +57,19 @@
 
 
 
-<meta name="description" content="
-这篇博客用来记录我的leetcode的题解，昨天上来看都400多题了..  我以前做的时候还只有一两百题.. 
+<meta name="description" content="这篇博客用来记录我的leetcode的题解，昨天上来看都400多题了..  我以前做的时候还只有一两百题.. 
 以前做的时候是用c++，那这次会用四种语言来做c++, go, js, py, 很遗憾leetcode不支持haskell，之后我会补一些我用haskell在hackerrank的题解.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode">
 <meta property="og:url" content="http://miloas.tk/2016/11/24/leetcode/index.html">
 <meta property="og:site_name" content="Miloas' Notes">
-<meta property="og:description" content="
-这篇博客用来记录我的leetcode的题解，昨天上来看都400多题了..  我以前做的时候还只有一两百题.. 
+<meta property="og:description" content="这篇博客用来记录我的leetcode的题解，昨天上来看都400多题了..  我以前做的时候还只有一两百题.. 
 以前做的时候是用c++，那这次会用四种语言来做c++, go, js, py, 很遗憾leetcode不支持haskell，之后我会补一些我用haskell在hackerrank的题解.">
 <meta property="og:image" content="https://ooo.0o0.ooo/2016/11/24/5836b46017489.jpg">
-<meta property="og:updated_time" content="2016-12-11T05:49:28.000Z">
+<meta property="og:updated_time" content="2016-12-11T05:53:13.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode">
-<meta name="twitter:description" content="
-这篇博客用来记录我的leetcode的题解，昨天上来看都400多题了..  我以前做的时候还只有一两百题.. 
+<meta name="twitter:description" content="这篇博客用来记录我的leetcode的题解，昨天上来看都400多题了..  我以前做的时候还只有一两百题.. 
 以前做的时候是用c++，那这次会用四种语言来做c++, go, js, py, 很遗憾leetcode不支持haskell，之后我会补一些我用haskell在hackerrank的题解.">
 <meta name="twitter:image" content="https://ooo.0o0.ooo/2016/11/24/5836b46017489.jpg">
 
@@ -92,7 +89,7 @@
   };
 </script>
 
-  <title> leetcode | Miloas' Notes </title>
+  <title> leetcode | Miloas' Notes </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -111,7 +108,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -270,8 +267,7 @@
       
 
       
-        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></p>
-<p>这篇博客用来记录我的<code>leetcode</code>的<a href="https://github.com/Miloas/leetcode" target="_blank" rel="external">题解</a>，昨天上来看都<code>400</code>多题了..  我以前做的时候还只有一两百题.. </p>
+        <p>这篇博客用来记录我的<code>leetcode</code>的<a href="https://github.com/Miloas/leetcode" target="_blank" rel="external">题解</a>，昨天上来看都<code>400</code>多题了..  我以前做的时候还只有一两百题.. </p>
 <p>以前做的时候是用<code>c++</code>，那这次会用四种语言来做<code>c++</code>, <code>go</code>, <code>js</code>, <code>py</code>, 很遗憾<code>leetcode</code>不支持<code>haskell</code>，之后我会补一些我用<code>haskell</code>在<code>hackerrank</code>的题解.</p>
 <a id="more"></a>
 <h2 id="Two-Sum"><a href="#Two-Sum" class="headerlink" title="Two Sum"></a>Two Sum</h2><p>这个题比较简单，扫第一遍用哈希表记下<code>target - nums[i]</code>的索引，扫第二遍查哈希表就<code>ok</code>了，在实现的时候可以放到一个循环里，这样你就不用去判断是否是同一个元素. <code>O(n)</code></p>
@@ -750,7 +746,24 @@
 
   
     <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
-    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
   
 
 
