@@ -57,22 +57,25 @@
 
 
 
-<meta name="description" content="偶然看到司徒正美前辈的2014年的一篇博客javascript 隐性类型转换步骤，看到评论里有人对练习的最后一个有疑问. 其实这里确实是正美前辈没说清楚.. 
-1&amp;#123; toString:function()&amp;#123; return 1 &amp;#125; , valueOf:function()&amp;#123; return [] &amp;#125;&amp;#125; == 1 // true
-为什么这个是t">
+<meta name="description" content="js的傻逼之处在于其各种怪异的行为让新手蛋疼无比. 
+
+用习惯c++发现动态语言在创建静态数据结构的时候都好难搞.. 奇怪的是go也不好写.. 比如你要创建一个动态大小的二维数组，那只能用切片循环往里加. 不像c++可以用vector容器或者向下用VLA. py创建二维数组就是用*，丑陋无比，囧rz. 
+js创建动态大小的二维数组方法很多. 但是这里有两个一不小心就中招的地方.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS == 运算符">
-<meta property="og:url" content="http://miloas.tk/2016/10/25/Js-equal-operator/index.html">
+<meta property="og:title" content="weird `new Array(n)`">
+<meta property="og:url" content="http://miloas.tk/2016/12/12/weird-new-Array-n/index.html">
 <meta property="og:site_name" content="Miloas' Notes">
-<meta property="og:description" content="偶然看到司徒正美前辈的2014年的一篇博客javascript 隐性类型转换步骤，看到评论里有人对练习的最后一个有疑问. 其实这里确实是正美前辈没说清楚.. 
-1&amp;#123; toString:function()&amp;#123; return 1 &amp;#125; , valueOf:function()&amp;#123; return [] &amp;#125;&amp;#125; == 1 // true
-为什么这个是t">
-<meta property="og:updated_time" content="2016-10-25T07:03:15.000Z">
+<meta property="og:description" content="js的傻逼之处在于其各种怪异的行为让新手蛋疼无比. 
+
+用习惯c++发现动态语言在创建静态数据结构的时候都好难搞.. 奇怪的是go也不好写.. 比如你要创建一个动态大小的二维数组，那只能用切片循环往里加. 不像c++可以用vector容器或者向下用VLA. py创建二维数组就是用*，丑陋无比，囧rz. 
+js创建动态大小的二维数组方法很多. 但是这里有两个一不小心就中招的地方.">
+<meta property="og:updated_time" content="2016-12-12T08:30:46.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JS == 运算符">
-<meta name="twitter:description" content="偶然看到司徒正美前辈的2014年的一篇博客javascript 隐性类型转换步骤，看到评论里有人对练习的最后一个有疑问. 其实这里确实是正美前辈没说清楚.. 
-1&amp;#123; toString:function()&amp;#123; return 1 &amp;#125; , valueOf:function()&amp;#123; return [] &amp;#125;&amp;#125; == 1 // true
-为什么这个是t">
+<meta name="twitter:title" content="weird `new Array(n)`">
+<meta name="twitter:description" content="js的傻逼之处在于其各种怪异的行为让新手蛋疼无比. 
+
+用习惯c++发现动态语言在创建静态数据结构的时候都好难搞.. 奇怪的是go也不好写.. 比如你要创建一个动态大小的二维数组，那只能用切片循环往里加. 不像c++可以用vector容器或者向下用VLA. py创建二维数组就是用*，丑陋无比，囧rz. 
+js创建动态大小的二维数组方法很多. 但是这里有两个一不小心就中招的地方.">
 
 
 
@@ -90,7 +93,7 @@
   };
 </script>
 
-  <title> JS == 运算符 | Miloas' Notes </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> weird `new Array(n)` | Miloas' Notes </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -222,7 +225,7 @@
             
             
               
-                JS == 运算符
+                weird `new Array(n)`
               
             
           </h1>
@@ -234,8 +237,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-25T14:11:42+08:00" content="2016-10-25">
-              2016-10-25
+            <time itemprop="dateCreated" datetime="2016-12-12T15:47:50+08:00" content="2016-12-12">
+              2016-12-12
             </time>
           </span>
 
@@ -245,8 +248,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/10/25/Js-equal-operator/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/10/25/Js-equal-operator/" itemprop="commentsCount"></span>
+                <a href="/2016/12/12/weird-new-Array-n/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/12/weird-new-Array-n/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -268,16 +271,28 @@
       
 
       
-        <p>偶然看到司徒正美前辈的<code>2014</code>年的一篇博客<a href="http://www.cnblogs.com/rubylouvre/p/3990290.html" target="_blank" rel="external">javascript 隐性类型转换步骤</a>，看到评论里有人对练习的最后一个有疑问. 其实这里确实是正美前辈没说清楚.. </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123; <span class="attr">toString</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="number">1</span> &#125; , <span class="attr">valueOf</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> [] &#125;&#125; == <span class="number">1</span> <span class="comment">// true</span></div></pre></td></tr></table></figure>
-<p>为什么这个是<code>true</code>呢？</p>
+        <blockquote>
+<p><code>js</code>的傻逼之处在于其各种怪异的行为让新手蛋疼无比. </p>
+</blockquote>
+<p>用习惯<code>c++</code>发现动态语言在创建静态数据结构的时候都好难搞.. 奇怪的是<code>go</code>也不好写.. 比如你要创建一个动态大小的二维数组，那只能用切片循环往里加. 不像<code>c++</code>可以用<code>vector</code>容器或者向下用<code>VLA</code>. <code>py</code>创建二维数组就是用<code>*</code>，丑陋无比，囧rz. </p>
+<p><code>js</code>创建动态大小的二维数组方法很多. 但是这里有两个一不小心就中招的地方.</p>
 <a id="more"></a>
-<p><code>javascript</code>的类型有两类<code>Primitive</code>和<code>Object</code>，<code>Primitive</code>有<code>Undefined</code>,<code>Boolean</code>,<code>Number</code>和<code>String</code>.</p>
-<p>先说<code>undefined</code>,<code>null</code>和<code>NaN</code>，<code>NaN</code>不等于任何值（包括它自身），<code>null</code>和<code>undefined</code>相等，但不等于除了自身外的任何值.</p>
-<p>（ps: <code>null</code>的含义是空对象, <code>undefined</code>的含义是无定义的值)</p>
-<p>除了和对象的比较，其他的比较都是大家都转数字来进行比较.</p>
-<p>对象和非对象的比较的规则稍微复杂一点，不过也只是一点点.  过程就是先<code>valueOf</code>一下，看有没有得到<code>primitive</code>的值或者<code>null</code>，如果得到了就直接比较，否则就去试<code>toString</code>，看看返回的值是不是<code>primitive</code>和<code>null</code>，是的话就比较，不是的话抛异常.</p>
-<p>回到一开始的问题<code>{ toString:function(){ return 1 } , valueOf:function(){ return [] }}</code>调用<code>valueOf()</code>返回的是<code>[]</code>不是我们需要的可比较类型，所以再用原<code>object</code>调用<code>toString()</code>返回<code>1</code>，直接比较.</p>
+<ol>
+<li><p>第一个地方就是<code>new Array(n)</code>方法，你也可以简便写成<code>Array(n)</code>，创建一个长度为<code>n</code>的数组：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> xs = <span class="built_in">Array</span>(<span class="number">3</span>)</div></pre></td></tr></table></figure>
+<p>上面这条语句在我的<code>Chrome 56</code>中返回的是<code>[undefined × 3]</code>，没错！它返回的不是<code>[undefined, undefined, undefined]</code>，所以当你这样做的时候:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xs.map(<span class="function">(<span class="params">item</span>) =&gt;</span> <span class="built_in">console</span>.log(item))</div><div class="line"><span class="comment">//[undefined × 3]</span></div></pre></td></tr></table></figure>
+<p>那么问题来了，<code>[undefined × 3]</code>是个什么鬼. 通俗来说<code>[undefined × 3]</code>就是<code>[,,,]</code>，就是真正的留了三个坑的数组，<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map" target="_blank" rel="external"><code>map</code></a>在这里就无法工作了. 所以当你想创建并初始化一个动态大小数组然后用<code>map</code>搞事情时，你需要这样做:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xs.fill().map(...)</div></pre></td></tr></table></figure>
+</li>
+<li><p>第二个地方就是<code>Array.prototype.fill</code>在填充对象的时候是填充的引用. </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> obj = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">this</span>.x=<span class="number">3</span>&#125;</div><div class="line"><span class="keyword">let</span> xs = <span class="built_in">Array</span>(<span class="number">3</span>).fill(<span class="keyword">new</span> obj())</div><div class="line"><span class="comment">//[obj, obj, obj]</span></div><div class="line">xs.map(<span class="function">(<span class="params">item</span>)=&gt;</span>item.x)</div><div class="line"><span class="comment">//[3, 3, 3]</span></div><div class="line">xs[<span class="number">0</span>].x = <span class="number">4</span></div><div class="line">xs.map(<span class="function">(<span class="params">item</span>)=&gt;</span>item.x)</div><div class="line"><span class="comment">//[4, 4, 4]</span></div></pre></td></tr></table></figure>
+<p>所以当你用<code>Array(n).fill(Array(m))</code>来创建二维数组的时候可毁了 （手动捂脸）， 本弱在这里调了好久…</p>
+</li>
+</ol>
+<p>结合上面两点创建一个二维数组的正确方法不言而喻:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>(<span class="number">2</span>).fill().map(<span class="function"><span class="params">()</span>=&gt;</span><span class="built_in">Array</span>(<span class="number">2</span>).fill(<span class="number">-1</span>))</div></pre></td></tr></table></figure>
+<p>这样就创建了一个<code>2*3</code>初始值为<code>-1</code>的数组. </p>
 
       
     </div>
@@ -301,17 +316,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/23/nodejs-module/" rel="next" title="exports和module.exports">
-                <i class="fa fa-chevron-left"></i> exports和module.exports
+              <a href="/2016/11/24/leetcode/" rel="next" title="leetcode">
+                <i class="fa fa-chevron-left"></i> leetcode
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/13/Websocket-Nodejs-as-client-and-Golang-as-server/" rel="prev" title="Websocket: Nodejs as client and Golang as server">
-                Websocket: Nodejs as client and Golang as server <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -697,9 +708,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'miloas';
-      var disqus_identifier = '2016/10/25/Js-equal-operator/';
-      var disqus_title = 'JS == 运算符';
-      var disqus_url = 'http://miloas.tk/2016/10/25/Js-equal-operator/';
+      var disqus_identifier = '2016/12/12/weird-new-Array-n/';
+      var disqus_title = 'weird `new Array(n)`';
+      var disqus_url = 'http://miloas.tk/2016/12/12/weird-new-Array-n/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
