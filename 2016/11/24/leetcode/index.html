@@ -68,7 +68,7 @@
 以前做的时候是用c++，那这次会用四种语言来做c++, go, js, py, 很遗憾leetcode不支持haskell，之后我会补一些我用haskell在hackerrank的题解.
 后补：mdzz，用四种语言写好浪费时间…  以后打算主要用js写..">
 <meta property="og:image" content="https://ooo.0o0.ooo/2016/11/24/5836b46017489.jpg">
-<meta property="og:updated_time" content="2016-12-12T08:46:03.000Z">
+<meta property="og:updated_time" content="2016-12-13T15:10:01.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode">
 <meta name="twitter:description" content="这篇博客用来记录我的leetcode的题解，昨天上来看都400多题了..  我以前做的时候还只有一两百题.. 
@@ -296,7 +296,8 @@ f_{i,\;j} =
 f_{i-1,\;j-1}, &(s_{i-1}=p_{j-1}\;or\;p_{j-1}=\;.)\;and\;p_{j-1} \neq*\cr
 f_{i,\;j-2}, &p_{j-1}=*\cr 
 f_{i,\;j} \;||\;f_{i-1,\;j}, &p_{j-1}=*\;and\;(s_{i-1}=p_{j-2}\;or\;p_{j-2}=\;.)\cr 
-\end{cases}</script>
+\end{cases}</script><h2 id="Container-With-Most-Water"><a href="#Container-With-Most-Water" class="headerlink" title="Container With Most Water"></a>Container With Most Water</h2><p>可以想到两个线段，分离的越远越好.  那直接贪心就可以. 两个指针分别指向左端和右端，每次移动矮的指针并统计最大值就可以.</p>
+
       
     </div>
 
@@ -447,7 +448,7 @@ f_{i,\;j} \;||\;f_{i-1,\;j}, &p_{j-1}=*\;and\;(s_{i-1}=p_{j-2}\;or\;p_{j-2}=\;.)
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Two-Sum"><span class="nav-number">1.</span> <span class="nav-text">Two Sum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-Two-Numbers"><span class="nav-number">2.</span> <span class="nav-text">Add Two Numbers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Longest-Substring-Without-Repeating-Characters"><span class="nav-number">3.</span> <span class="nav-text">Longest Substring Without Repeating Characters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Median-of-Two-Sorted-Arrays"><span class="nav-number">4.</span> <span class="nav-text">Median of Two Sorted Arrays</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Longest-Palindromic-Substring"><span class="nav-number">5.</span> <span class="nav-text">Longest Palindromic Substring</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ZigZag-Conversion"><span class="nav-number">6.</span> <span class="nav-text">ZigZag Conversion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reverse-Integer"><span class="nav-number">7.</span> <span class="nav-text">Reverse Integer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String-to-Integer-atoi"><span class="nav-number">8.</span> <span class="nav-text">String to Integer (atoi)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Palindrome-Number"><span class="nav-number">9.</span> <span class="nav-text">Palindrome Number</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regular-Expression-Matching"><span class="nav-number">10.</span> <span class="nav-text">Regular Expression Matching</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Two-Sum"><span class="nav-number">1.</span> <span class="nav-text">Two Sum</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Add-Two-Numbers"><span class="nav-number">2.</span> <span class="nav-text">Add Two Numbers</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Longest-Substring-Without-Repeating-Characters"><span class="nav-number">3.</span> <span class="nav-text">Longest Substring Without Repeating Characters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Median-of-Two-Sorted-Arrays"><span class="nav-number">4.</span> <span class="nav-text">Median of Two Sorted Arrays</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Longest-Palindromic-Substring"><span class="nav-number">5.</span> <span class="nav-text">Longest Palindromic Substring</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ZigZag-Conversion"><span class="nav-number">6.</span> <span class="nav-text">ZigZag Conversion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reverse-Integer"><span class="nav-number">7.</span> <span class="nav-text">Reverse Integer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String-to-Integer-atoi"><span class="nav-number">8.</span> <span class="nav-text">String to Integer (atoi)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Palindrome-Number"><span class="nav-number">9.</span> <span class="nav-text">Palindrome Number</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Regular-Expression-Matching"><span class="nav-number">10.</span> <span class="nav-text">Regular Expression Matching</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Container-With-Most-Water"><span class="nav-number">11.</span> <span class="nav-text">Container With Most Water</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
