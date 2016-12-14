@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="-Javascript," />
+  <meta name="keywords" content="-nodejs," />
 
 
 
@@ -57,25 +57,16 @@
 
 
 
-<meta name="description" content="js的傻逼之处在于其各种怪异的行为让新手蛋疼无比. 
-
-用习惯c++发现动态语言在创建静态数据结构的时候都好难搞.. 奇怪的是go也不好写.. 比如你要创建一个动态大小的二维数组，那只能用切片循环往里加. 不像c++可以用vector容器或者向下用VLA. py创建二维数组就是用*，丑陋无比，囧rz. 
-js创建动态大小的二维数组方法很多. 但是这里有两个一不小心就中招的地方.">
+<meta name="description" content="最近在用node写东西的时候遇到一个坑，发现用child_process.exec运行的后台进程，不能用返回的实体调用kill杀掉. 然后就去读了文档，发现还是挺有必要记录一下.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="weird new Array(n)">
-<meta property="og:url" content="http://miloas.tk/2016/12/12/weird-new-Array-n/index.html">
+<meta property="og:title" content="exec vs execFile vs spawn vs fork">
+<meta property="og:url" content="http://miloas.tk/2016/12/14/exec-spawn-and-fork/index.html">
 <meta property="og:site_name" content="Miloas' Notes">
-<meta property="og:description" content="js的傻逼之处在于其各种怪异的行为让新手蛋疼无比. 
-
-用习惯c++发现动态语言在创建静态数据结构的时候都好难搞.. 奇怪的是go也不好写.. 比如你要创建一个动态大小的二维数组，那只能用切片循环往里加. 不像c++可以用vector容器或者向下用VLA. py创建二维数组就是用*，丑陋无比，囧rz. 
-js创建动态大小的二维数组方法很多. 但是这里有两个一不小心就中招的地方.">
-<meta property="og:updated_time" content="2016-12-12T08:36:07.000Z">
+<meta property="og:description" content="最近在用node写东西的时候遇到一个坑，发现用child_process.exec运行的后台进程，不能用返回的实体调用kill杀掉. 然后就去读了文档，发现还是挺有必要记录一下.">
+<meta property="og:updated_time" content="2016-12-14T08:47:08.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="weird new Array(n)">
-<meta name="twitter:description" content="js的傻逼之处在于其各种怪异的行为让新手蛋疼无比. 
-
-用习惯c++发现动态语言在创建静态数据结构的时候都好难搞.. 奇怪的是go也不好写.. 比如你要创建一个动态大小的二维数组，那只能用切片循环往里加. 不像c++可以用vector容器或者向下用VLA. py创建二维数组就是用*，丑陋无比，囧rz. 
-js创建动态大小的二维数组方法很多. 但是这里有两个一不小心就中招的地方.">
+<meta name="twitter:title" content="exec vs execFile vs spawn vs fork">
+<meta name="twitter:description" content="最近在用node写东西的时候遇到一个坑，发现用child_process.exec运行的后台进程，不能用返回的实体调用kill杀掉. 然后就去读了文档，发现还是挺有必要记录一下.">
 
 
 
@@ -93,7 +84,7 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
   };
 </script>
 
-  <title> weird new Array(n) | Miloas' Notes </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> exec vs execFile vs spawn vs fork | Miloas' Notes </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -225,7 +216,7 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
             
             
               
-                weird new Array(n)
+                exec vs execFile vs spawn vs fork
               
             
           </h1>
@@ -237,8 +228,8 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-12T15:47:50+08:00" content="2016-12-12">
-              2016-12-12
+            <time itemprop="dateCreated" datetime="2016-12-14T14:15:26+08:00" content="2016-12-14">
+              2016-12-14
             </time>
           </span>
 
@@ -248,8 +239,8 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/12/12/weird-new-Array-n/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/12/weird-new-Array-n/" itemprop="commentsCount"></span>
+                <a href="/2016/12/14/exec-spawn-and-fork/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/14/exec-spawn-and-fork/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -271,28 +262,28 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
       
 
       
-        <blockquote>
-<p><code>js</code>的傻逼之处在于其各种怪异的行为让新手蛋疼无比. </p>
-</blockquote>
-<p>用习惯<code>c++</code>发现动态语言在创建静态数据结构的时候都好难搞.. 奇怪的是<code>go</code>也不好写.. 比如你要创建一个动态大小的二维数组，那只能用切片循环往里加. 不像<code>c++</code>可以用<code>vector</code>容器或者向下用<code>VLA</code>. <code>py</code>创建二维数组就是用<code>*</code>，丑陋无比，囧rz. </p>
-<p><code>js</code>创建动态大小的二维数组方法很多. 但是这里有两个一不小心就中招的地方.</p>
+        <p>最近在用<code>node</code>写东西的时候遇到一个坑，发现用<code>child_process.exec</code>运行的后台进程，不能用返回的实体调用<code>kill</code>杀掉. 然后就去读了文档，发现还是挺有必要记录一下.</p>
 <a id="more"></a>
-<ol>
-<li><p>第一个地方就是<code>new Array(n)</code>方法，你也可以简便写成<code>Array(n)</code>，创建一个长度为<code>n</code>的数组：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> xs = <span class="built_in">Array</span>(<span class="number">3</span>)</div></pre></td></tr></table></figure>
-<p>上面这条语句在我的<code>Chrome 56</code>中返回的是<code>[undefined × 3]</code>，没错！它返回的不是<code>[undefined, undefined, undefined]</code>，所以当你这样做的时候:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xs.map(<span class="function">(<span class="params">item</span>) =&gt;</span> <span class="built_in">console</span>.log(item))</div><div class="line"><span class="comment">//[undefined × 3]</span></div></pre></td></tr></table></figure>
-<p>那么问题来了，<code>[undefined × 3]</code>是个什么鬼. 通俗来说<code>[undefined × 3]</code>就是<code>[,,,]</code>，就是真正的留了三个坑的数组，<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map" target="_blank" rel="external"><code>map</code></a>在这里就无法工作了. 所以当你想创建并初始化一个动态大小数组然后用<code>map</code>搞事情时，你需要这样做:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xs.fill().map(...)</div></pre></td></tr></table></figure>
-</li>
-<li><p>第二个地方就是<code>Array.prototype.fill</code>在填充对象的时候是填充的引用. </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> obj = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">this</span>.x=<span class="number">3</span>&#125;</div><div class="line"><span class="keyword">let</span> xs = <span class="built_in">Array</span>(<span class="number">3</span>).fill(<span class="keyword">new</span> obj())</div><div class="line"><span class="comment">//[obj, obj, obj]</span></div><div class="line">xs.map(<span class="function">(<span class="params">item</span>)=&gt;</span>item.x)</div><div class="line"><span class="comment">//[3, 3, 3]</span></div><div class="line">xs[<span class="number">0</span>].x = <span class="number">4</span></div><div class="line">xs.map(<span class="function">(<span class="params">item</span>)=&gt;</span>item.x)</div><div class="line"><span class="comment">//[4, 4, 4]</span></div></pre></td></tr></table></figure>
-<p>所以当你用<code>Array(n).fill(Array(m))</code>来创建二维数组的时候可毁了 （手动捂脸）， 本弱在这里调了好久…</p>
-</li>
-</ol>
-<p>结合上面两点创建一个二维数组的正确方法不言而喻:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>(<span class="number">2</span>).fill().map(<span class="function"><span class="params">()</span>=&gt;</span><span class="built_in">Array</span>(<span class="number">2</span>).fill(<span class="number">-1</span>))</div></pre></td></tr></table></figure>
-<p>这样就创建了一个<code>2*3</code>初始值为<code>-1</code>的数组. </p>
+<p><code>node</code>中执行外部命令有四个可用的函数:</p>
+<ul>
+<li><code>child_process.exec</code></li>
+<li><code>child_process.execFile</code></li>
+<li><code>child_process.spawn</code></li>
+<li><code>child_process.fork</code></li>
+</ul>
+<p><code>exec</code>是这四个当中唯一一个可以像在终端输命令那样执行外部命令的的方法，只需要把命令拼成字符串传给它就可以</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> exec = <span class="built_in">require</span>(<span class="string">'child_process'</span>).exec;</div><div class="line">exec(<span class="string">'cat *.js bad_file | wc -l'</span>, (error, stdout, stderr) =&gt; &#123;</div><div class="line">  <span class="keyword">if</span> (error) &#123;</div><div class="line">    <span class="built_in">console</span>.error(<span class="string">`exec error: <span class="subst">$&#123;error&#125;</span>`</span>);</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`stdout: <span class="subst">$&#123;stdout&#125;</span>`</span>);</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`stderr: <span class="subst">$&#123;stderr&#125;</span>`</span>);</div><div class="line">&#125;);</div><div class="line"><span class="comment">//轻松使用管道</span></div></pre></td></tr></table></figure>
+<p>命令执行的结果是放在一个<code>buffer</code>里的，这个<code>buffer</code>的大小可通过<code>option</code>参数调整.  为什么<code>exec</code>这么屌，可以这么方便的执行外部命令，是因为它是启了一个<code>sub shell</code>进程，然后用这个进程解释执行命令. 所以当你用<code>exec</code>跑一个后台应用的时候实际上是先启动一个<code>shell</code>进程，再<code>fork</code>一个子进程执行你的命令. （这里的<code>fork</code>指的是创建子进程)，所以当用<code>exec</code>执行返回的实体调用<code>kill</code>的时候，杀死的是这个<code>sub shell</code>进程，而命令的后台进程只会改变它的父进程指向<code>init</code>进程，而不会杀死它. </p>
+<p><code>execFile</code>和<code>exec</code>基本相同，除了它的使用不再那么方便，需要把外部命令的参数放进数组里来调用，因为<code>execFile</code>不再创建一个<code>sub shell</code>，而是直接为这个外部命令创建进程. 所以执行效率上要高于<code>exec</code>，但是它也是把结果放进<code>buffer</code>的.值得注意.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> execFile = <span class="built_in">require</span>(<span class="string">'child_process'</span>).execFile;</div><div class="line"><span class="keyword">const</span> child = execFile(<span class="string">'node'</span>, [<span class="string">'--version'</span>], (error, stdout, stderr) =&gt; &#123;</div><div class="line">  <span class="keyword">if</span> (error) &#123;</div><div class="line">    <span class="keyword">throw</span> error;</div><div class="line">  &#125;</div><div class="line">  <span class="built_in">console</span>.log(stdout);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><code>spawn</code>则和<code>execFile</code>相似，除了执行结果是<code>stream</code>，所以当你返回的结果很长的时候，可以使用<code>spawn</code>来优化效率.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> spawn = <span class="built_in">require</span>(<span class="string">'child_process'</span>).spawn;</div><div class="line"><span class="keyword">const</span> ls = spawn(<span class="string">'ls'</span>, [<span class="string">'-lh'</span>, <span class="string">'/usr'</span>]);</div><div class="line"></div><div class="line">ls.stdout.on(<span class="string">'data'</span>, (data) =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`stdout: <span class="subst">$&#123;data&#125;</span>`</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">ls.stderr.on(<span class="string">'data'</span>, (data) =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`stderr: <span class="subst">$&#123;data&#125;</span>`</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">ls.on(<span class="string">'close'</span>, (code) =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">`child process exited with code <span class="subst">$&#123;code&#125;</span>`</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p><code>fork</code>和<code>spawn</code>很像，比<code>spawn</code>多提供了<code>ipc</code>的功能. 必须强调的是这里的<code>fork</code>和<code>POSIX</code>的<code>fork</code>是两码事，它不会去克隆当前进程. 所以不要和<code>C</code>或者<code>*nix</code>编程中系统函数<code>fork</code>搞混.</p>
+<p>最后如果想杀死<code>exec</code>创建的进程，可以用<a href="https://www.npmjs.com/package/ps-tree" target="_blank" rel="external"><code>ps-tree</code></a>：</p>
+<blockquote>
+<p>use <code>ps-tree</code> to get all processes that a <code>child_process</code> may have started, so that they may all be terminated.</p>
+</blockquote>
+<p>然后<code>forEach(process.kill)</code>..</p>
 
       
     </div>
@@ -307,7 +298,7 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
       
         <div class="post-tags">
           
-            <a href="/tags/Javascript/" rel="tag">#-Javascript</a>
+            <a href="/tags/nodejs/" rel="tag">#-nodejs</a>
           
         </div>
       
@@ -316,17 +307,13 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/24/leetcode/" rel="next" title="leetcode">
-                <i class="fa fa-chevron-left"></i> leetcode
+              <a href="/2016/12/12/weird-new-Array-n/" rel="next" title="weird new Array(n)">
+                <i class="fa fa-chevron-left"></i> weird new Array(n)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/14/exec-spawn-and-fork/" rel="prev" title="exec vs execFile vs spawn vs fork">
-                exec vs execFile vs spawn vs fork <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -712,9 +699,9 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
 
     <script type="text/javascript">
       var disqus_shortname = 'miloas';
-      var disqus_identifier = '2016/12/12/weird-new-Array-n/';
-      var disqus_title = 'weird new Array(n)';
-      var disqus_url = 'http://miloas.tk/2016/12/12/weird-new-Array-n/';
+      var disqus_identifier = '2016/12/14/exec-spawn-and-fork/';
+      var disqus_title = 'exec vs execFile vs spawn vs fork';
+      var disqus_url = 'http://miloas.tk/2016/12/14/exec-spawn-and-fork/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');

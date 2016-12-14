@@ -221,6 +221,104 @@
             
               
                 
+                <a class="post-title-link" href="/2016/12/14/exec-spawn-and-fork/" itemprop="url">
+                  exec vs execFile vs spawn vs fork
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-12-14T14:15:26+08:00" content="2016-12-14">
+              2016-12-14
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/12/14/exec-spawn-and-fork/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/14/exec-spawn-and-fork/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>最近在用<code>node</code>写东西的时候遇到一个坑，发现用<code>child_process.exec</code>运行的后台进程，不能用返回的实体调用<code>kill</code>杀掉. 然后就去读了文档，发现还是挺有必要记录一下.</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/12/14/exec-spawn-and-fork/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/12/12/weird-new-Array-n/" itemprop="url">
                   weird new Array(n)
                 </a>
@@ -1114,108 +1212,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/04/10/React-tutorial/" itemprop="url">
-                  Yet another awful React tutorial
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-10T00:19:31+08:00" content="2016-04-10">
-              2016-04-10
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/04/10/React-tutorial/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/04/10/React-tutorial/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="Pre"><a href="#Pre" class="headerlink" title="Pre."></a>Pre.</h1><p></p>
-
-<p><a href="https://github.com/facebook/react">React</a> 是<code>facebook</code>开源的前端组件化的方案, 和 <a href="https://github.com/angular/angular">Angular</a> 相比只关注视图层<code>View</code> , 但是这不代表它不够强大, <a href="https://github.com/facebook/react">React</a> 现在已经拥有庞大的生态体系, 路由的解决方案有 <a href="https://github.com/reactjs/react-router">react-router</a> , 数据流的解决方案有 <a href="https://github.com/reactjs/redux">redux</a> 和 <a href="https://github.com/reflux/refluxjs">reflux</a> … 并且依然可以很容易的使用 <code>jQuery</code>,<code>bootstrap</code> 等等第三方库.</p>
-<p>我将会在这篇博客教大家用最基本的<code>React v15</code>写一个模拟<code>Terminal</code>的页面.</p>
-<p>ps: 这不是一篇新手向的教程 …</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/04/10/React-tutorial/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1262,7 +1258,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
