@@ -67,7 +67,7 @@
 <meta property="og:description" content="偶然看到司徒正美前辈的2014年的一篇博客javascript 隐性类型转换步骤，看到评论里有人对练习的最后一个有疑问. 其实这里确实是正美前辈没说清楚.. 
 1&amp;#123; toString:function()&amp;#123; return 1 &amp;#125; , valueOf:function()&amp;#123; return [] &amp;#125;&amp;#125; == 1 // true
 为什么这个是t">
-<meta property="og:updated_time" content="2016-10-25T07:03:15.000Z">
+<meta property="og:updated_time" content="2016-12-23T06:16:56.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JS == 运算符">
 <meta name="twitter:description" content="偶然看到司徒正美前辈的2014年的一篇博客javascript 隐性类型转换步骤，看到评论里有人对练习的最后一个有疑问. 其实这里确实是正美前辈没说清楚.. 
@@ -272,7 +272,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123; <span class="attr">toString</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="number">1</span> &#125; , <span class="attr">valueOf</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> [] &#125;&#125; == <span class="number">1</span> <span class="comment">// true</span></div></pre></td></tr></table></figure>
 <p>为什么这个是<code>true</code>呢？</p>
 <a id="more"></a>
-<p><code>javascript</code>的类型有两类<code>Primitive</code>和<code>Object</code>，<code>Primitive</code>有<code>Undefined</code>,<code>Boolean</code>,<code>Number</code>和<code>String</code>.</p>
+<p><code>javascript</code>的类型有两类<code>Primitive</code>和<code>Object</code>，<code>Primitive</code>有<code>Undefined</code>,<code>null</code>,<code>Boolean</code>,<code>Number</code>和<code>String</code>.</p>
 <p>先说<code>undefined</code>,<code>null</code>和<code>NaN</code>，<code>NaN</code>不等于任何值（包括它自身），<code>null</code>和<code>undefined</code>相等，但不等于除了自身外的任何值.</p>
 <p>（ps: <code>null</code>的含义是空对象, <code>undefined</code>的含义是无定义的值)</p>
 <p>除了和对象的比较，其他的比较都是大家都转数字来进行比较.</p>
