@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="-Javascript," />
+  <meta name="keywords" content="-javascript," />
 
 
 
@@ -57,25 +57,19 @@
 
 
 
-<meta name="description" content="js的傻逼之处在于其各种怪异的行为让新手蛋疼无比. 
-
-用习惯c++发现动态语言在创建静态数据结构的时候都好难搞.. 奇怪的是go也不好写.. 比如你要创建一个动态大小的二维数组，那只能用切片循环往里加. 不像c++可以用vector容器或者向下用VLA. py创建二维数组就是用*，丑陋无比，囧rz. 
-js创建动态大小的二维数组方法很多. 但是这里有两个一不小心就中招的地方.">
+<meta name="description" content="这篇博客收集一些我在写js时遇到的一些问题.
+笔者曾经写过C++，Haskell，Clojure，Ocaml，Python，Go，所以我遇到的问题默认都是和这些语言对比…  我真的不是js黑..">
 <meta property="og:type" content="article">
-<meta property="og:title" content="weird new Array(n)">
-<meta property="og:url" content="http://miloas.tk/2016/12/12/weird-new-Array-n/index.html">
+<meta property="og:title" content="Damn it, javascript!">
+<meta property="og:url" content="http://miloas.tk/2016/12/28/Damn-it-javascript/index.html">
 <meta property="og:site_name" content="Miloas' Notes">
-<meta property="og:description" content="js的傻逼之处在于其各种怪异的行为让新手蛋疼无比. 
-
-用习惯c++发现动态语言在创建静态数据结构的时候都好难搞.. 奇怪的是go也不好写.. 比如你要创建一个动态大小的二维数组，那只能用切片循环往里加. 不像c++可以用vector容器或者向下用VLA. py创建二维数组就是用*，丑陋无比，囧rz. 
-js创建动态大小的二维数组方法很多. 但是这里有两个一不小心就中招的地方.">
-<meta property="og:updated_time" content="2016-12-12T08:36:07.000Z">
+<meta property="og:description" content="这篇博客收集一些我在写js时遇到的一些问题.
+笔者曾经写过C++，Haskell，Clojure，Ocaml，Python，Go，所以我遇到的问题默认都是和这些语言对比…  我真的不是js黑..">
+<meta property="og:updated_time" content="2016-12-28T07:11:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="weird new Array(n)">
-<meta name="twitter:description" content="js的傻逼之处在于其各种怪异的行为让新手蛋疼无比. 
-
-用习惯c++发现动态语言在创建静态数据结构的时候都好难搞.. 奇怪的是go也不好写.. 比如你要创建一个动态大小的二维数组，那只能用切片循环往里加. 不像c++可以用vector容器或者向下用VLA. py创建二维数组就是用*，丑陋无比，囧rz. 
-js创建动态大小的二维数组方法很多. 但是这里有两个一不小心就中招的地方.">
+<meta name="twitter:title" content="Damn it, javascript!">
+<meta name="twitter:description" content="这篇博客收集一些我在写js时遇到的一些问题.
+笔者曾经写过C++，Haskell，Clojure，Ocaml，Python，Go，所以我遇到的问题默认都是和这些语言对比…  我真的不是js黑..">
 
 
 
@@ -93,7 +87,7 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
   };
 </script>
 
-  <title> weird new Array(n) | Miloas' Notes </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Damn it, javascript! | Miloas' Notes </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -225,7 +219,7 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
             
             
               
-                weird new Array(n)
+                Damn it, javascript!
               
             
           </h1>
@@ -237,8 +231,8 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-12T15:47:50+08:00" content="2016-12-12">
-              2016-12-12
+            <time itemprop="dateCreated" datetime="2016-12-28T14:39:20+08:00" content="2016-12-28">
+              2016-12-28
             </time>
           </span>
 
@@ -248,8 +242,8 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/12/12/weird-new-Array-n/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/12/weird-new-Array-n/" itemprop="commentsCount"></span>
+                <a href="/2016/12/28/Damn-it-javascript/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/28/Damn-it-javascript/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -271,28 +265,26 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
       
 
       
-        <blockquote>
-<p><code>js</code>的傻逼之处在于其各种怪异的行为让新手蛋疼无比. </p>
-</blockquote>
-<p>用习惯<code>c++</code>发现动态语言在创建静态数据结构的时候都好难搞.. 奇怪的是<code>go</code>也不好写.. 比如你要创建一个动态大小的二维数组，那只能用切片循环往里加. 不像<code>c++</code>可以用<code>vector</code>容器或者向下用<code>VLA</code>. <code>py</code>创建二维数组就是用<code>*</code>，丑陋无比，囧rz. </p>
-<p><code>js</code>创建动态大小的二维数组方法很多. 但是这里有两个一不小心就中招的地方.</p>
+        <p>这篇博客收集一些我在写<code>js</code>时遇到的一些问题.</p>
+<p>笔者曾经写过<code>C++</code>，<code>Haskell</code>，<code>Clojure</code>，<code>Ocaml</code>，<code>Python</code>，<code>Go</code>，所以我遇到的问题默认都是和这些语言对比…  我真的不是<code>js</code>黑..</p>
 <a id="more"></a>
 <ol>
-<li><p>第一个地方就是<code>new Array(n)</code>方法，你也可以简便写成<code>Array(n)</code>，创建一个长度为<code>n</code>的数组：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> xs = <span class="built_in">Array</span>(<span class="number">3</span>)</div></pre></td></tr></table></figure>
-<p>上面这条语句在我的<code>Chrome 56</code>中返回的是<code>[undefined × 3]</code>，没错！它返回的不是<code>[undefined, undefined, undefined]</code>，所以当你这样做的时候:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xs.map(<span class="function">(<span class="params">item</span>) =&gt;</span> <span class="built_in">console</span>.log(item))</div><div class="line"><span class="comment">//[undefined × 3]</span></div></pre></td></tr></table></figure>
-<p>那么问题来了，<code>[undefined × 3]</code>是个什么鬼. 通俗来说<code>[undefined × 3]</code>就是<code>[,,,]</code>，就是真正的留了三个坑的数组，<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map" target="_blank" rel="external"><code>map</code></a>在这里就无法工作了. 所以当你想创建并初始化一个动态大小数组然后用<code>map</code>搞事情时，你需要这样做:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xs.fill().map(...)</div></pre></td></tr></table></figure>
+<li><p>弱类型 + 除法</p>
+<p><code>js</code>是弱类型的，本来其实也没啥，但是弱类型遇上除法就是坑的一逼. </p>
+<p>比如<code>array[3/2]</code>，如果是<code>C++</code>这么写就等价于<code>array[1]</code>，但是<code>js</code>当中<code>3/2</code>是一个小数..  数组索引是一个小数还不会报错，只不过取不到值时会返回<code>undefined</code>… 所以如果你想让其表达正确的行为，你得显示下去整.<code>Math.floor</code>或者<code>|0</code>. 如果在<code>haskell</code>或者<code>ocaml</code>中就完全不会出现这种情况. 比如<code>ocaml</code>是区分整数运算和小数运算的<code>3/2</code>和<code>3./2</code>会得到完全不同的结果..</p>
 </li>
-<li><p>第二个地方就是<code>Array.prototype.fill</code>在填充对象的时候是填充的引用. </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> obj = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">this</span>.x=<span class="number">3</span>&#125;</div><div class="line"><span class="keyword">let</span> xs = <span class="built_in">Array</span>(<span class="number">3</span>).fill(<span class="keyword">new</span> obj())</div><div class="line"><span class="comment">//[obj, obj, obj]</span></div><div class="line">xs.map(<span class="function">(<span class="params">item</span>)=&gt;</span>item.x)</div><div class="line"><span class="comment">//[3, 3, 3]</span></div><div class="line">xs[<span class="number">0</span>].x = <span class="number">4</span></div><div class="line">xs.map(<span class="function">(<span class="params">item</span>)=&gt;</span>item.x)</div><div class="line"><span class="comment">//[4, 4, 4]</span></div></pre></td></tr></table></figure>
-<p>所以当你用<code>Array(n).fill(Array(m))</code>来创建二维数组的时候可毁了 （手动捂脸）， 本弱在这里调了好久…</p>
+<li><p>无符号整形</p>
+<p>我们知道<code>js</code>里<code>number</code>类型，是按<code>IEEE</code>的标准存放，边界是<code>Number.MIN_SAFE_INTEGER(-(2^53 - 1))</code>到<code>Number.MAX_SAFE_INTEGER(2^53-1)</code>.但是当你在搞整型的时候，表现出的行为你就需要注意了. 浮点数是这个范围没错，整型在<code>js</code>基本所有的运算规则下都是默认转成有符号来搞的. 所以当你想用无符号的时候，你需要用黑科技<code>&gt;&gt;&gt;0</code>没错，这是一个黑科技位移操作，作用就是把一个有符号整型转成无符号整型.</p>
+</li>
+<li><p>类型</p>
+<p><code>js</code>的类型除了<code>primitive</code>的六个，剩下的全是引！用！ 这他妈就有趣了，因为用惯了<code>C++</code>，会有点不适应，<code>C++</code>的引用你是要显示用<code>&amp;</code>操作符来声明的，或者用指针. 所以在<code>js</code>中下面的代码会表现出和<code>C++</code>完全不同的行为.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> xs = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], ys = []</div><div class="line">ys.push(xs)</div><div class="line">xs.push(<span class="number">4</span>)</div><div class="line"><span class="built_in">console</span>.log(ys) <span class="comment">// [[1, 2, 3, 4]]</span></div></pre></td></tr></table></figure>
+<p>放<code>C++</code>的<code>vector</code>，<code>push_back</code>进去就是一个拷贝.</p>
+<p>如果你想完成像<code>C++</code>这样的行为，就要做一次深拷贝. 好在<code>js</code>中有方便的方法了<code>let t = Object.assign([],xs)</code>，这样<code>t</code>就是<code>xs</code>的深拷贝对象. 上面的代码根据这个改写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> xs = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], ys = []</div><div class="line"><span class="keyword">let</span> t = <span class="built_in">Object</span>.assgint([], xs)</div><div class="line">ys.push(t)</div><div class="line">xs.push(<span class="number">4</span>)</div><div class="line"><span class="built_in">console</span>.log(ys) <span class="comment">// [[1, 2, 3]]</span></div></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>结合上面两点创建一个二维数组的正确方法不言而喻:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>(<span class="number">2</span>).fill().map(<span class="function"><span class="params">()</span>=&gt;</span><span class="built_in">Array</span>(<span class="number">2</span>).fill(<span class="number">-1</span>))</div></pre></td></tr></table></figure>
-<p>这样就创建了一个<code>2*3</code>初始值为<code>-1</code>的数组. </p>
+<p>未完待续.</p>
 
       
     </div>
@@ -307,7 +299,7 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
       
         <div class="post-tags">
           
-            <a href="/tags/Javascript/" rel="tag">#-Javascript</a>
+            <a href="/tags/javascript/" rel="tag">#-javascript</a>
           
         </div>
       
@@ -316,17 +308,13 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/24/leetcode/" rel="next" title="leetcode">
-                <i class="fa fa-chevron-left"></i> leetcode
+              <a href="/2016/12/14/exec-spawn-and-fork/" rel="next" title="exec vs execFile vs spawn vs fork">
+                <i class="fa fa-chevron-left"></i> exec vs execFile vs spawn vs fork
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/14/exec-spawn-and-fork/" rel="prev" title="exec vs execFile vs spawn vs fork">
-                exec vs execFile vs spawn vs fork <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -712,9 +700,9 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
 
     <script type="text/javascript">
       var disqus_shortname = 'miloas';
-      var disqus_identifier = '2016/12/12/weird-new-Array-n/';
-      var disqus_title = 'weird new Array(n)';
-      var disqus_url = 'http://miloas.tk/2016/12/12/weird-new-Array-n/';
+      var disqus_identifier = '2016/12/28/Damn-it-javascript/';
+      var disqus_title = 'Damn it, javascript!';
+      var disqus_url = 'http://miloas.tk/2016/12/28/Damn-it-javascript/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
