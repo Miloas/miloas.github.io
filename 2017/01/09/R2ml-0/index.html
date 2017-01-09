@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="-Javascript," />
+  <meta name="keywords" content="-ocaml," />
 
 
 
@@ -57,25 +57,19 @@
 
 
 
-<meta name="description" content="js的傻逼之处在于其各种怪异的行为让新手蛋疼无比. 
-
-用习惯c++发现动态语言在创建静态数据结构的时候都好难搞.. 奇怪的是go也不好写.. 比如你要创建一个动态大小的二维数组，那只能用切片循环往里加. 不像c++可以用vector容器或者向下用VLA. py创建二维数组就是用*，丑陋无比，囧rz. 
-js创建动态大小的二维数组方法很多. 但是这里有两个一不小心就中招的地方.">
+<meta name="description" content="这是我用Ocaml实现王垠大神的R2 的系列博客.
+第一篇什么都不讲，就是想吐槽一下Ocaml.. 想看正文的去下一篇..  QAQ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="weird new Array(n)">
-<meta property="og:url" content="http://miloas.tk/2016/12/12/weird-new-Array-n/index.html">
+<meta property="og:title" content="R2ml(0)">
+<meta property="og:url" content="http://miloas.tk/2017/01/09/R2ml-0/index.html">
 <meta property="og:site_name" content="Miloas' Notes">
-<meta property="og:description" content="js的傻逼之处在于其各种怪异的行为让新手蛋疼无比. 
-
-用习惯c++发现动态语言在创建静态数据结构的时候都好难搞.. 奇怪的是go也不好写.. 比如你要创建一个动态大小的二维数组，那只能用切片循环往里加. 不像c++可以用vector容器或者向下用VLA. py创建二维数组就是用*，丑陋无比，囧rz. 
-js创建动态大小的二维数组方法很多. 但是这里有两个一不小心就中招的地方.">
-<meta property="og:updated_time" content="2016-12-12T08:36:07.000Z">
+<meta property="og:description" content="这是我用Ocaml实现王垠大神的R2 的系列博客.
+第一篇什么都不讲，就是想吐槽一下Ocaml.. 想看正文的去下一篇..  QAQ">
+<meta property="og:updated_time" content="2017-01-09T12:05:11.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="weird new Array(n)">
-<meta name="twitter:description" content="js的傻逼之处在于其各种怪异的行为让新手蛋疼无比. 
-
-用习惯c++发现动态语言在创建静态数据结构的时候都好难搞.. 奇怪的是go也不好写.. 比如你要创建一个动态大小的二维数组，那只能用切片循环往里加. 不像c++可以用vector容器或者向下用VLA. py创建二维数组就是用*，丑陋无比，囧rz. 
-js创建动态大小的二维数组方法很多. 但是这里有两个一不小心就中招的地方.">
+<meta name="twitter:title" content="R2ml(0)">
+<meta name="twitter:description" content="这是我用Ocaml实现王垠大神的R2 的系列博客.
+第一篇什么都不讲，就是想吐槽一下Ocaml.. 想看正文的去下一篇..  QAQ">
 
 
 
@@ -93,7 +87,7 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
   };
 </script>
 
-  <title> weird new Array(n) | Miloas' Notes </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> R2ml(0) | Miloas' Notes </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -225,7 +219,7 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
             
             
               
-                weird new Array(n)
+                R2ml(0)
               
             
           </h1>
@@ -237,8 +231,8 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-12-12T15:47:50+08:00" content="2016-12-12">
-              2016-12-12
+            <time itemprop="dateCreated" datetime="2017-01-09T19:07:46+08:00" content="2017-01-09">
+              2017-01-09
             </time>
           </span>
 
@@ -248,8 +242,8 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/12/12/weird-new-Array-n/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/12/12/weird-new-Array-n/" itemprop="commentsCount"></span>
+                <a href="/2017/01/09/R2ml-0/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/01/09/R2ml-0/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -271,28 +265,17 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
       
 
       
-        <blockquote>
-<p><code>js</code>的傻逼之处在于其各种怪异的行为让新手蛋疼无比. </p>
-</blockquote>
-<p>用习惯<code>c++</code>发现动态语言在创建静态数据结构的时候都好难搞.. 奇怪的是<code>go</code>也不好写.. 比如你要创建一个动态大小的二维数组，那只能用切片循环往里加. 不像<code>c++</code>可以用<code>vector</code>容器或者向下用<code>VLA</code>. <code>py</code>创建二维数组就是用<code>*</code>，丑陋无比，囧rz. </p>
-<p><code>js</code>创建动态大小的二维数组方法很多. 但是这里有两个一不小心就中招的地方.</p>
+        <p>这是我用<code>Ocaml</code>实现王垠大神的<a href="http://www.jianshu.com/p/509505d3bd50" target="_blank" rel="external"><code>R2</code></a> 的系列博客.</p>
+<p>第一篇什么都不讲，就是想吐槽一下<code>Ocaml</code>.. 想看正文的去下一篇..  QAQ</p>
 <a id="more"></a>
-<ol>
-<li><p>第一个地方就是<code>new Array(n)</code>方法，你也可以简便写成<code>Array(n)</code>，创建一个长度为<code>n</code>的数组：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> xs = <span class="built_in">Array</span>(<span class="number">3</span>)</div></pre></td></tr></table></figure>
-<p>上面这条语句在我的<code>Chrome 56</code>中返回的是<code>[undefined × 3]</code>，没错！它返回的不是<code>[undefined, undefined, undefined]</code>，所以当你这样做的时候:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xs.map(<span class="function">(<span class="params">item</span>) =&gt;</span> <span class="built_in">console</span>.log(item))</div><div class="line"><span class="comment">//[undefined × 3]</span></div></pre></td></tr></table></figure>
-<p>那么问题来了，<code>[undefined × 3]</code>是个什么鬼. 通俗来说<code>[undefined × 3]</code>就是<code>[,,,]</code>，就是真正的留了三个坑的数组，<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map" target="_blank" rel="external"><code>map</code></a>在这里就无法工作了. 所以当你想创建并初始化一个动态大小数组然后用<code>map</code>搞事情时，你需要这样做:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xs.fill().map(...)</div></pre></td></tr></table></figure>
-</li>
-<li><p>第二个地方就是<code>Array.prototype.fill</code>在填充对象的时候是填充的引用. </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> obj = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="keyword">this</span>.x=<span class="number">3</span>&#125;</div><div class="line"><span class="keyword">let</span> xs = <span class="built_in">Array</span>(<span class="number">3</span>).fill(<span class="keyword">new</span> obj())</div><div class="line"><span class="comment">//[obj, obj, obj]</span></div><div class="line">xs.map(<span class="function">(<span class="params">item</span>)=&gt;</span>item.x)</div><div class="line"><span class="comment">//[3, 3, 3]</span></div><div class="line">xs[<span class="number">0</span>].x = <span class="number">4</span></div><div class="line">xs.map(<span class="function">(<span class="params">item</span>)=&gt;</span>item.x)</div><div class="line"><span class="comment">//[4, 4, 4]</span></div></pre></td></tr></table></figure>
-<p>所以当你用<code>Array(n).fill(Array(m))</code>来创建二维数组的时候可毁了 （手动捂脸）， 本弱在这里调了好久…</p>
-</li>
-</ol>
-<p>结合上面两点创建一个二维数组的正确方法不言而喻:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Array</span>(<span class="number">2</span>).fill().map(<span class="function"><span class="params">()</span>=&gt;</span><span class="built_in">Array</span>(<span class="number">2</span>).fill(<span class="number">-1</span>))</div></pre></td></tr></table></figure>
-<p>这样就创建了一个<code>2*3</code>初始值为<code>-1</code>的数组. </p>
+<p>想学点<code>Ocaml</code>是因为看到张宏波大神用<code>Ocaml</code>做了<code>bucklescript</code>很牛逼，加上2017年<code>React on Reason</code>也就是可能是下一代<code>React</code>，将使用强类型的<code>Ocaml</code>类似语法的<code>Reason</code>.</p>
+<p>怎么说呢，<code>Ocaml</code>这语法丑的一逼  - - ， 同是<code>ML</code>系的<code>haskell</code>就好看多了… 我不喜欢<code>haskell</code>是因为<code>cabal</code>..  所以你还得另用<code>stack</code>来管理你的第三方包. </p>
+<p><code>Ocaml</code>比<code>haskell</code>好的一点是<code>opam</code>还算好用. 而且没有默认惰性，所以你估算复杂度起来就很直观. 而且除了函数式还支持指令式，所以不用像<code>haskell</code>一样去搞<code>monad</code>.  </p>
+<p>但是，我要吐槽了:</p>
+<p><code>Ocaml</code>的文档..  泪崩.. 只有类似<code>haskell</code>中的那种类型注解一样的接口，然后加一个描述..  没有任何例子.. 如果你想通过谷歌搞几个例子，你就崩了..  因为谷歌不到啊卧槽. 举个栗子，因为我以前没用过可以扩展自身语法树的语言，想了解下ppx，谷歌了几天，只能找到两篇博客介绍，然而并看不卵懂. 所以我发现学了这么多语言只有<code>Clojure</code>让人省心..  他们有一个社区一起维护的带栗子的文档. 很爽很好用.</p>
+<p><code>Ocaml</code>的咨询很少的原因，所以我其实很想知道大家都通用的自动化工具的解决方法是怎样的.. 总之官方给了好几种方案，看来看去发现只有自己写<code>makefile</code>靠谱啊 .. nmd，突然想想前端好幸福… 我在知乎上提问<code>Ocaml</code>自动化单元测试怎么做的问题到现在还没人理 = =… </p>
+<p><code>camlp4</code>这个神器是在<code>Ocaml 4.01</code>以后从标准库里剥离了，我其实是想用他的<code>parser</code>（实在不想直接lex和yacc)，但是我最后发现<code>merlin</code>（一个类似eslint的工具）居然不支持<code>camlp4</code>，于是写代码的时候，只能顶着报错写…  这里值得一说的替代<code>camlp4</code>的是<code>ppx</code>，但是只是替代它扩展<code>ocaml</code>语法的功能，但是<code>ppx</code>并没有提供<code>parser</code>之类的语法分析功能… 但是你要用<code>camlp4</code>就蛋疼了.. 我还一直以为可以像导入其他库一样的导进去就能用.. 但实际上它是编译的预处理器，所以是作为pp的参数来使用的..</p>
+<p>写<code>Ocaml</code>的感觉和写<code>Haskell</code>没什么卵区别..  但是真的很不开心.. </p>
 
       
     </div>
@@ -307,7 +290,7 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
       
         <div class="post-tags">
           
-            <a href="/tags/Javascript/" rel="tag">#-Javascript</a>
+            <a href="/tags/ocaml/" rel="tag">#-ocaml</a>
           
         </div>
       
@@ -316,17 +299,13 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/11/24/leetcode/" rel="next" title="leetcode">
-                <i class="fa fa-chevron-left"></i> leetcode
+              <a href="/2016/12/28/Damn-it-javascript/" rel="next" title="Damn it, javascript!">
+                <i class="fa fa-chevron-left"></i> Damn it, javascript!
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/14/exec-spawn-and-fork/" rel="prev" title="exec vs execFile vs spawn vs fork">
-                exec vs execFile vs spawn vs fork <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -712,9 +691,9 @@ js创建动态大小的二维数组方法很多. 但是这里有两个一不小�
 
     <script type="text/javascript">
       var disqus_shortname = 'miloas';
-      var disqus_identifier = '2016/12/12/weird-new-Array-n/';
-      var disqus_title = 'weird new Array(n)';
-      var disqus_url = 'http://miloas.tk/2016/12/12/weird-new-Array-n/';
+      var disqus_identifier = '2017/01/09/R2ml-0/';
+      var disqus_title = 'R2ml(0)';
+      var disqus_url = 'http://miloas.tk/2017/01/09/R2ml-0/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
